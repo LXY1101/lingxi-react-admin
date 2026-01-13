@@ -1,0 +1,471 @@
+.sidebar {
+  width: 420px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--sidebar-border);
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  z-index: 20;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+/* 左侧头像图标栏 */
+.sidebar-left-rail {
+  width: 80px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 0;
+  background: var(--sidebar);
+  border-right: 1px solid var(--sidebar-border);
+  height: 100%;
+  z-index: 30;
+}
+
+.sidebar-user-avatar-wrapper {
+  margin-bottom: 2rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.sidebar-user-status {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #22c55e;
+  border: 2px solid #ffffff;
+  border-radius: 9999px;
+  transform: translate(20%, -20%);
+}
+
+/* 模块图标外层容器 */
+.sidebar-module-icons {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+/* 单个模块图标按钮 */
+.sidebar-module-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  transform: scale(0.9);
+}
+
+/* 非激活状态 hover 效果 */
+.sidebar-module-icon:not(.active):hover {
+  background-color: #f9fafb;
+  transform: scale(1);
+}
+
+/* 激活状态样式 */
+.sidebar-module-icon.active {
+  transform: scale(1);
+}
+
+/* 激活状态的渐变背景 */
+.module-icon-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #9333ea 0%, #4f46e5 100%);
+  border-radius: 14px;
+  box-shadow: 0 10px 15px -3px rgba(168, 85, 247, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* 图标样式 */
+.module-icon {
+  position: relative;
+  transition: color 0.3s ease;
+  color: #9ca3af;
+  stroke-width: 1.5;
+}
+
+/* 激活状态的图标样式 */
+.sidebar-module-icon.active .module-icon {
+  color: #ffffff;
+  stroke-width: 2;
+}
+
+/* 非激活状态 hover 时的图标颜色 */
+.sidebar-module-icon:not(.active):hover .module-icon {
+  color: #a855f7;
+}
+
+/* 分隔线样式 */
+.sidebar-divider {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  height: 1px;
+  width: 32px;
+  background-color: #f3f4f6;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 通知红点样式 */
+.sidebar-notification-dot {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 8px;
+  height: 8px;
+  background-color: #ef4444;
+  border-radius: 9999px;
+  border: 1px solid #ffffff;
+  display: inline-block;
+}
+
+/* 底部操作按钮外层容器 */
+.sidebar-bottom-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 8px;
+  width: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+/* 单个模块图标按钮（通用样式） */
+.sidebar-module-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.15s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* 设置按钮 hover 背景 */
+.sidebar-bottom-actions > button:first-child:hover {
+  background-color: #f9fafb;
+}
+
+/* 退出按钮 hover 背景 */
+.sidebar-bottom-actions > button:last-child:hover {
+  background-color: #fef2f2;
+}
+
+/* 设置按钮图标 hover 颜色 */
+.sidebar-bottom-actions > button:first-child:hover .module-icon {
+  color: #6b7280;
+}
+
+/* 退出按钮图标 hover 颜色 */
+.sidebar-bottom-actions > button:last-child:hover .module-icon {
+  color: #ef4444;
+}
+
+/* 可展开面板 */
+.sidebar-expanded-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: rgba(248, 250, 252, 0.5);
+  height: 100%;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+  opacity: 1;
+}
+
+.sidebar.collapsed .sidebar-expanded-panel {
+  width: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebar-panel-header {
+  height: 80px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.sidebar-panel-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--sidebar-foreground);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.sidebar-panel-subtitle {
+  font-size: 11px;
+  color: var(--muted-foreground);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 2px 0 0 0;
+}
+
+.sidebar-collapse-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 20px;
+}
+
+.sidebar-collapse-btn:hover {
+  background: var(--sidebar);
+  color: var(--sidebar-foreground);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-panel-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  padding-bottom: 16px;
+}
+
+.sidebar-search {
+  margin-bottom: 24px;
+  padding: 0 8px;
+}
+
+.sidebar-section {
+  margin-bottom: 32px;
+  padding: 0 8px;
+}
+
+.sidebar-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.sidebar-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-section-link {
+  font-size: 11px;
+  color: var(--sidebar-primary);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.sidebar-section-link:hover {
+  text-decoration: underline;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--muted-foreground);
+  font-weight: 500;
+  position: relative;
+  border: 1px solid transparent;
+  background: transparent;
+}
+
+.sidebar-menu-item:hover {
+  background: var(--sidebar);
+  color: var(--sidebar-foreground);
+  border-color: var(--border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-menu-item.active {
+  background: var(--sidebar);
+  color: var(--sidebar-foreground);
+  border-color: var(--sidebar-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px var(--sidebar);
+}
+
+.menu-item-dot-purple {
+  background: var(--sidebar-primary);
+}
+
+.menu-item-dot-orange {
+  background: #f97316;
+}
+
+.menu-item-dot-blue {
+  background: #3b82f6;
+}
+
+.menu-item-text {
+  flex: 1;
+  font-size: 14px;
+}
+
+.sidebar-recent-files {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.recent-file-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 1px solid transparent;
+}
+
+.recent-file-item:hover {
+  background: var(--sidebar);
+  border-color: var(--border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.recent-file-icon-wrapper {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.recent-file-icon {
+  font-size: 16px;
+  color: var(--muted-foreground);
+}
+
+.recent-file-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.recent-file-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a202c;
+}
+
+.recent-file-time {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.recent-file-more {
+  font-size: 16px;
+  color: #94a3b8;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.recent-file-item:hover .recent-file-more {
+  opacity: 1;
+}
+
+.sidebar-panel-footer {
+  padding: 16px;
+  border-top: 1px solid var(--sidebar-border);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  flex-shrink: 0;
+}
+
+.sidebar-help-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.help-card-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sidebar);
+  border-radius: 8px;
+  font-size: 16px;
+  color: var(--sidebar-primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.help-card-content {
+  flex: 1;
+}
+
+.help-card-title {
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--sidebar-foreground);
+  margin-bottom: 2px;
+}
+
+.help-card-desc {
+  font-size: 10px;
+  color: var(--muted-foreground);
+  opacity: 0.8;
+}

@@ -8,6 +8,7 @@ import TestingAutomation from '../../pages/Testing/Automation';
 import TestingSandbox from '../../pages/Testing/Sandbox';
 import AppDataBoard from '../../pages/AppManagement/DataBoard';
 import AppList from '../../pages/AppManagement/AppList';
+import Profile from '../../pages/Profile';
 import './index.scss';
 
 const { Content } = Layout;
@@ -39,6 +40,9 @@ function AdminPanel() {
               <Route path="app" element={<Navigate to="app/data-board" replace />} />
               <Route path="app/data-board" element={<AppDataBoard />} />
               <Route path="app/app-list" element={<AppList />} />
+
+              {/* 个人中心 */}
+              <Route path="profile" element={<Profile />} />
 
               {/* 默认 */}
               <Route path="" element={<Navigate to="development/project-board" replace />} />

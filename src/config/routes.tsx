@@ -22,27 +22,3 @@ export const routes = [
     element: <Navigate to="/admin/dashboard/project-board" replace />,
   },
 ];
-
-// 管理后台子路由
-export const adminRoutes = [
-  {
-    path: 'dashboard',
-    key: 'dashboard',
-    label: '工作台',
-  },
-  {
-    path: 'development',
-    key: 'development',
-    label: '开发',
-  },
-  {
-    path: 'testing',
-    key: 'testing',
-    label: '测试',
-  },
-  {
-    path: 'app',
-    key: 'app',
-    label: '应用管理',
-  },
-];

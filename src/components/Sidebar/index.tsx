@@ -183,6 +183,7 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
                     "linear-gradient(135deg, #f97316 0%, #ec4899 100%)",
                 }}
                 icon={<UserOutlined />}
+                onClick={() => navigate("/admin/profile")}
               />
             </div>
           </div>

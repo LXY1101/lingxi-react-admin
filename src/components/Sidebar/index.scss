@@ -29,22 +29,58 @@
   z-index: 30;
 }
 
-.sidebar-user-avatar-wrapper {
+.sidebar-avatar-container {
   margin-bottom: 2rem;
   position: relative;
   cursor: pointer;
+  width: fit-content;
 }
 
-.sidebar-user-status {
+.sidebar-avatar-container:hover .avatar-gradient {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+.sidebar-avatar-gradient {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #fb923c, #ec4899);
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.sidebar-avatar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  background-color: white;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.sidebar-avatar-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  object-fit: cover;
+  display: block;
+}
+
+.sidebar-online-status {
   position: absolute;
   top: 0;
   right: 0;
   width: 0.75rem;
   height: 0.75rem;
   background-color: #22c55e;
-  border: 2px solid #ffffff;
+  border: 2px solid white;
   border-radius: 9999px;
-  transform: translate(20%, -20%);
+}
+
+.sidebar-avatar-container:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
 }
 
 /* 模块图标外层容器 */

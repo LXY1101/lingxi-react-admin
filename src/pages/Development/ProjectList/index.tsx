@@ -236,11 +236,11 @@ function ProjectList() {
             <div className="project-progress">
               <div className="progress-label">项目进度</div>
               <Progress
-                percent={project.progress}
-                strokeColor={getStatusColor(project.status)}
-                size={8}
-                showInfo={false}
-              />
+              percent={project.progress}
+              strokeColor={getStatusColor(project.status)}
+              size="small"
+              showInfo={false}
+            />
               <div className="progress-percent">{project.progress}%</div>
             </div>
 

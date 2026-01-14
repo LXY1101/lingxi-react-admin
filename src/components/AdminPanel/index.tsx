@@ -4,6 +4,7 @@ import DashboardProjectBoard from '../../pages/Dashboard/ProjectBoard';
 import DashboardProjectList from '../../pages/Dashboard/ProjectList';
 
 import DevelopmentDataBoard from '../../pages/Development/DataBoard';
+import ProjectList from '../../pages/Development/ProjectList';
 import DevelopmentIssueList from '../../pages/Development/IssueList';
 import TestingAutomation from '../../pages/Testing/Automation';
 import TestingSandbox from '../../pages/Testing/Sandbox';
@@ -30,7 +31,7 @@ function AdminPanel() {
               {/* 开发 */}
               <Route path="development" element={<Navigate to="development/data-board" replace />} />
               <Route path="development/data-board" element={<DevelopmentDataBoard />} />
-            
+              <Route path="development/project-list" element={<ProjectList />} />
               <Route path="development/issue-list" element={<DevelopmentIssueList />} />
 
               {/* 测试 */}

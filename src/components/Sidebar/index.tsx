@@ -147,9 +147,10 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
     if (path.includes("/admin/dashboard/project-board")) return "dashboard-project-board";
     if (path.includes("/admin/dashboard/project-list")) return "dashboard-project-list";
     // 开发
-    if (path.includes("/admin/development/project-board")) return "development-project-board";
+    if (path.includes("/admin/development/data-board")) return "development-data-board";
     if (path.includes("/admin/development/project-list"))
       return "development-project-list";
+    if (path.includes("/admin/development/issue-list")) return "development-issue-list";
     // 测试
     if (path.includes("/admin/testing/automation")) return "testing-automation";
     if (path.includes("/admin/testing/sandbox")) return "testing-sandbox";
@@ -161,7 +162,7 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
 
   const handleMenuClick = (key: string) => {
     const module = modules.find((m) => m.key === key);
-    navigate(module?.defaultPath || "/admin/development/project-board");
+    navigate(module?.defaultPath || "/admin/dashboard/project-board");
   };
 
   const recentFiles = [

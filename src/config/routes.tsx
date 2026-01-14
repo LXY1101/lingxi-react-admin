@@ -15,34 +15,10 @@ export const routes = [
   },
   {
     path: '/',
-    element: <Navigate to="/admin/development/board" replace />,
+    element: <Navigate to="/admin/dashboard/project-board" replace />,
   },
   {
     path: '*',
-    element: <Navigate to="/admin/development/board" replace />,
-  },
-];
-
-// 管理后台子路由
-export const adminRoutes = [
-  {
-    path: 'dashboard',
-    key: 'dashboard',
-    label: '工作台',
-  },
-  {
-    path: 'development',
-    key: 'development',
-    label: '开发',
-  },
-  {
-    path: 'testing',
-    key: 'testing',
-    label: '测试',
-  },
-  {
-    path: 'apps',
-    key: 'apps',
-    label: '应用管理',
+    element: <Navigate to="/admin/dashboard/project-board" replace />,
   },
 ];

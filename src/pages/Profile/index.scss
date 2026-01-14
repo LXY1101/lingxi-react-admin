@@ -1,0 +1,262 @@
+.profile-page {
+  padding: 32px;
+  background-color: #f9fafb;
+}
+
+.profile-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+.profile-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4b5563;
+  transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+
+  &:hover {
+    color: #9333ea;
+  }
+
+  .icon {
+    width: 1rem;
+    height: 1rem;
+    font-size: 1rem;
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:hover .icon {
+    transform: translateX(-0.25rem);
+  }
+
+  .text {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+}
+
+.profile-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.profile-subtitle {
+  color: #6b7280;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.profile-hero-card {
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.9) 0%, rgba(79, 70, 229, 0.9) 100%);
+  color: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.25),
+    0 8px 10px -6px rgba(15, 23, 42, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-hero-card::before,
+.profile-hero-card::after {
+  content: "";
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+}
+
+.profile-hero-card::before {
+  top: 0;
+  right: 0;
+  width: 256px;
+  height: 256px;
+  transform: translate(50%, -50%);
+}
+
+.profile-hero-card::after {
+  bottom: 0;
+  left: 0;
+  width: 192px;
+  height: 192px;
+  transform: translate(-50%, 50%);
+}
+
+.profile-hero-content {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.profile-hero-right {
+  flex: 1;
+}
+
+.profile-summary-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.profile-name {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.profile-username {
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+.profile-meta {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 12px;
+}
+
+.profile-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.profile-contact {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.profile-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.profile-tabs-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.profile-form-actions {
+  display: flex;
+  gap: 12px;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 16px;
+}
+
+.profile-main-card {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #f3f4f6;
+  padding: 8px 24px 24px 24px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+.profile-section-card .section-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-section-card {
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+}
+
+.section-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.section-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profile-tab-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-text .section-title {
+  font-weight: 600;
+}
+
+.section-text .section-title-sm {
+  font-weight: 500;
+}
+
+.section-text .section-desc {
+  font-size: 12px;
+  color: #666;
+}
+
+.thirdparty-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.thirdparty-icon.wechat {
+  background: #52c41a;
+}
+
+.thirdparty-icon.github {
+  background: #000;
+}
+
+.icon-success {
+  color: #52c41a;
+}

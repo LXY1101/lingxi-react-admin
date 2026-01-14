@@ -11,6 +11,7 @@ import {
   MenuFoldOutlined,
   MoreOutlined,
 } from "@ant-design/icons";
+import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import "./index.scss";
@@ -132,37 +133,22 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
     },
   ];
 
-  const getModuleKeyFromPath = () => {
-    const path = location.pathname;
-    if (path.includes("/admin/dashboard")) return "dashboard";
-    if (path.includes("/admin/development")) return "development";
-    if (path.includes("/admin/testing")) return "testing";
-    if (path.includes("/admin/app")) return "app";
-    return "dashboard";
+  const extractModuleKey = (path: string) => {
+    const match = path.match(/^\/admin\/(dashboard|development|testing|app)\b/);
+    return match?.[1] || "";
   };
 
-  const getActiveSubKeyFromPath = () => {
+  const extractActiveSubKey = () => {
     const path = location.pathname;
-    // 工作台
-    if (path.includes("/admin/dashboard/project-board")) return "dashboard-project-board";
-    if (path.includes("/admin/dashboard/project-list")) return "dashboard-project-list";
-    // 开发
-    if (path.includes("/admin/development/data-board")) return "development-data-board";
-    if (path.includes("/admin/development/project-list"))
-      return "development-project-list";
-    if (path.includes("/admin/development/issue-list")) return "development-issue-list";
-    // 测试
-    if (path.includes("/admin/testing/automation")) return "testing-automation";
-    if (path.includes("/admin/testing/sandbox")) return "testing-sandbox";
-    // 应用管理
-    if (path.includes("/admin/app/data-board")) return "app-data-board";
-    if (path.includes("/admin/app/app-list")) return "app-list";
-    return "";
+    const allItems = modules.flatMap((m) => m.menuItems || []);
+    const found = allItems.find((item) => path.startsWith(item.path));
+    return found?.key || "";
   };
 
   const handleMenuClick = (key: string) => {
     const module = modules.find((m) => m.key === key);
     navigate(module?.defaultPath || "/admin/dashboard/project-board");
+    setActiveModuleKey(key);
   };
 
   const recentFiles = [
@@ -171,9 +157,19 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
     { id: 3, name: "Website Redesign", time: "5h ago" },
   ];
 
+  const moduleKey = extractModuleKey(location.pathname);
+  const isModuleRoute = !!moduleKey;
+  const [activeModuleKey, setActiveModuleKey] = useState<string>(moduleKey || modules[0].key);
+  useEffect(() => {
+    const key = extractModuleKey(location.pathname);
+    if (key) {
+      setActiveModuleKey(key);
+    }
+  }, [location.pathname]);
+
   const activeModule =
-    modules.find((m) => m.key === getModuleKeyFromPath()) || modules[0];
-  const activeSubKey = getActiveSubKeyFromPath();
+    modules.find((m) => m.key === activeModuleKey) || modules[0];
+  const activeSubKey = isModuleRoute ? extractActiveSubKey() : "";
   const activeMenuItems = activeModule.menuItems || [];
 
   return (
@@ -202,7 +198,7 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
         <div className="sidebar-module-icons">
           {modules.map((module) => {
             const Icon = module.icon;
-            const isActive = activeModule.key === module.key;
+            const isActive = isModuleRoute && activeModule.key === module.key;
             return (
               <button
                 key={module.key}

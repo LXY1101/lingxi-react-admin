@@ -2,8 +2,9 @@ import { Layout } from 'antd';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import DashboardProjectBoard from '../../pages/Dashboard/ProjectBoard';
 import DashboardProjectList from '../../pages/Dashboard/ProjectList';
-import DevelopmentProjectBoard from '../../pages/Development/ProjectBoard';
-import DevelopmentProjectList from '../../pages/Development/ProjectList';
+
+import DevelopmentDataBoard from '../../pages/Development/DataBoard';
+import DevelopmentIssueList from '../../pages/Development/IssueList';
 import TestingAutomation from '../../pages/Testing/Automation';
 import TestingSandbox from '../../pages/Testing/Sandbox';
 import AppDataBoard from '../../pages/AppManagement/DataBoard';
@@ -27,9 +28,10 @@ function AdminPanel() {
               <Route path="dashboard/project-list" element={<DashboardProjectList />} />
 
               {/* 开发 */}
-              <Route path="development" element={<Navigate to="development/project-board" replace />} />
-              <Route path="development/project-board" element={<DevelopmentProjectBoard />} />
-              <Route path="development/project-list" element={<DevelopmentProjectList />} />
+              <Route path="development" element={<Navigate to="development/data-board" replace />} />
+              <Route path="development/data-board" element={<DevelopmentDataBoard />} />
+            
+              <Route path="development/issue-list" element={<DevelopmentIssueList />} />
 
               {/* 测试 */}
               <Route path="testing" element={<Navigate to="testing/automation" replace />} />

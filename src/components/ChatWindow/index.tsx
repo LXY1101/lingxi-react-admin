@@ -4,7 +4,7 @@ import {
   UserOutlined, 
   RobotOutlined,
   MessageOutlined,
-  CloseOutlined,
+  RightOutlined,
   SettingOutlined,
   BulbOutlined,
   CodeOutlined,
@@ -225,7 +225,7 @@ function ChatWindow({ selectedElement, selectedProject }: ChatWindowProps) {
         className="chat-close-button"
         style={{ right: (width + 16) + 'px' }}
       >
-        <CloseOutlined />
+        <RightOutlined />
       </button>
 
       <div className="chat-window" style={{ width: width + 'px' }}>

@@ -86,14 +86,14 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
       menuItems: [
         {
           key: "testing-automation",
-          label: "自动化测试",
+          label: "测试数据看板",
           path: "/admin/testing/automation",
           dotClass: "menu-item-dot-purple",
           badge: 1,
         },
         {
           key: "testing-sandbox",
-          label: "沙盒测试",
+          label: "版本管理",
           path: "/admin/testing/sandbox",
           dotClass: "menu-item-dot-orange",
         },

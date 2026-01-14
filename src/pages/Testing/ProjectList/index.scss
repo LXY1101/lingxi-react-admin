@@ -1,0 +1,320 @@
+.project-list-page {
+  padding: 24px;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+
+  // 页面头部
+  .page-header {
+    margin-bottom: 24px;
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .title-with-icon {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        .title-icon {
+          width: 40px;
+          height: 40px;
+          border-radius: 8px;
+          background-color: #f5f0ff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 20px;
+          color: #722ed1;
+        }
+
+        .title-text {
+          .page-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #1f1f1f;
+            margin-bottom: 8px;
+          }
+
+          .page-description {
+            font-size: 14px;
+            color: #8c8c8c;
+            margin: 0;
+          }
+        }
+      }
+
+      .header-actions {
+        .create-project-btn {
+          background-color: #722ed1;
+          border-color: #722ed1;
+          border-radius: 8px;
+          padding: 8px 16px;
+          font-size: 16px;
+          font-weight: 500;
+
+          &:hover,
+          &:focus {
+            background-color: #8b5cf6;
+            border-color: #8b5cf6;
+          }
+        }
+      }
+    }
+  }
+
+  // 筛选区域
+  .filter-section {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+    // 状态标签页
+    .status-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 16px;
+
+      .tab {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        color: #8c8c8c;
+        transition: all 0.3s ease;
+
+        &.active {
+          background-color: #722ed1;
+          color: #ffffff;
+        }
+
+        &:not(.active):hover {
+          background-color: #f5f0ff;
+          color: #722ed1;
+        }
+
+        .tab-count {
+          background-color: rgba(0, 0, 0, 0.1);
+          color: inherit;
+          padding: 2px 8px;
+          border-radius: 10px;
+          font-size: 12px;
+          font-weight: 600;
+
+          .tab.active & {
+            background-color: rgba(255, 255, 255, 0.2);
+          }
+
+          .tab:not(.active):hover & {
+            background-color: rgba(114, 46, 209, 0.1);
+          }
+        }
+      }
+    }
+
+    // 搜索和筛选
+    .search-filter {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+
+      .search-input {
+        flex: 1;
+        min-width: 300px;
+        border-radius: 8px;
+        border-color: #d9d9d9;
+
+        &:focus {
+          border-color: #722ed1;
+          box-shadow: 0 0 0 2px rgba(114, 46, 209, 0.2);
+        }
+      }
+
+      .filter-tags {
+        display: flex;
+        gap: 8px;
+
+        .filter-tag {
+          padding: 6px 12px;
+          border-radius: 16px;
+          background-color: #f0f0f0;
+          color: #595959;
+          font-size: 12px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background-color: #f5f0ff;
+            color: #722ed1;
+          }
+        }
+      }
+    }
+  }
+
+  // 项目卡片网格
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 20px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+
+    // 项目卡片
+    .project-card {
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      overflow: hidden;
+
+      &:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        transform: translateY(-2px);
+      }
+
+      // 项目头部
+      .project-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+
+        .project-name {
+          font-size: 18px;
+          font-weight: 600;
+          color: #1f1f1f;
+          margin: 0;
+        }
+      }
+
+      // 项目描述
+      .project-description {
+        font-size: 14px;
+        color: #595959;
+        margin-bottom: 16px;
+        line-height: 1.5;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+
+      // 项目进度
+      .project-progress {
+        position: relative;
+        margin-bottom: 16px;
+
+        .progress-label {
+          font-size: 12px;
+          color: #8c8c8c;
+          margin-bottom: 8px;
+        }
+
+        .ant-progress {
+          margin: 0;
+        }
+
+        .ant-progress-line {
+          height: 8px;
+
+          .ant-progress-bg {
+            border-radius: 4px;
+          }
+        }
+
+        .progress-percent {
+          position: absolute;
+          right: 0;
+          top: 0;
+          font-size: 14px;
+          font-weight: 600;
+          color: #1f1f1f;
+        }
+      }
+
+      // 项目标签
+      .project-tags {
+        margin-bottom: 16px;
+
+        .ant-tag {
+          margin-bottom: 8px;
+        }
+      }
+
+      // 项目底部信息
+      .project-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding-top: 16px;
+        border-top: 1px solid #f0f0f0;
+
+        // 团队成员
+        .project-members {
+          .member-avatars {
+            display: flex;
+            align-items: center;
+
+            .member-avatar {
+              border: 2px solid #ffffff;
+              box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+
+              &:first-child {
+                margin-left: 0;
+              }
+            }
+          }
+        }
+
+        // 项目统计
+        .project-stats {
+          display: flex;
+          gap: 16px;
+          align-items: center;
+
+          .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: #8c8c8c;
+
+            .stat-icon {
+              font-size: 14px;
+            }
+
+            .stat-value {
+              font-weight: 500;
+            }
+          }
+        }
+
+        // 更新时间
+        .project-update {
+          display: flex;
+          gap: 4px;
+          font-size: 12px;
+          color: #8c8c8c;
+
+          .update-label {
+            color: #bfbfbf;
+          }
+        }
+      }
+    }
+  }
+}

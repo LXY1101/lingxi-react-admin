@@ -105,6 +105,20 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
           path: "/admin/testing/sandbox",
           dotClass: "menu-item-dot-orange",
         },
+        {
+          key: "testing-project-list",
+          label: "项目列表",
+          path: "/admin/testing/project-list",
+          dotClass: "menu-item-dot-orange",
+          badge: 5,
+        },
+        {
+          key: "testing-issue-list",
+          label: "issue列表",
+          path: "/admin/testing/issue-list",
+          dotClass: "menu-item-dot-blue",
+          badge: 8,
+        },
       ],
     },
     // 应用管理

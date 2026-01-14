@@ -8,6 +8,8 @@ import ProjectList from '../../pages/Development/ProjectList';
 import DevelopmentIssueList from '../../pages/Development/IssueList';
 import TestingAutomation from '../../pages/Testing/Automation';
 import TestingSandbox from '../../pages/Testing/Sandbox';
+import TestingIssueList from '../../pages/Testing/IssueList';
+import TestingProjectList from '../../pages/Testing/ProjectList';
 import AppDataBoard from '../../pages/AppManagement/DataBoard';
 import AppList from '../../pages/AppManagement/AppList';
 import Profile from '../../pages/Profile';
@@ -38,6 +40,8 @@ function AdminPanel() {
               <Route path="testing" element={<Navigate to="testing/automation" replace />} />
               <Route path="testing/automation" element={<TestingAutomation />} />
               <Route path="testing/sandbox" element={<TestingSandbox />} />
+              <Route path="testing/project-list" element={<TestingProjectList />} />
+              <Route path="testing/issue-list" element={<TestingIssueList />} />
 
               {/* 应用管理 */}
               <Route path="app" element={<Navigate to="app/data-board" replace />} />

@@ -4,7 +4,6 @@ import {
   Row, 
   Col, 
   Progress, 
-  List, 
   Avatar, 
   Button, 
   Tag,
@@ -231,7 +230,7 @@ function DevelopmentDataDashboard() {
       <Row gutter={[16, 16]} className="stats-section">
         {stats.map((stat, index) => (
           <Col xs={24} sm={12} md={6} key={index}>
-            <Card bordered={false} className="custom-stat-card">
+            <Card variant="outlined" className="custom-stat-card">
               <div className="card-header">
                 <div 
                   className="icon-container"
@@ -260,7 +259,7 @@ function DevelopmentDataDashboard() {
       <Row gutter={[16, 16]} className="main-content">
         {/* 项目健康度 */}
         <Col xs={24} lg={16}>
-          <Card title="项目健康度" bordered={false} className="health-card">
+          <Card title="项目健康度" variant="outlined" className="health-card">
             <div className="health-list">
               {projectHealth.map((project, index) => (
                 <div key={index} className="health-item">
@@ -293,7 +292,7 @@ function DevelopmentDataDashboard() {
 
         {/* Issues流转 */}
         <Col xs={24} lg={8}>
-          <Card title="Issues流转" bordered={false} className="issues-card">
+          <Card title="Issues流转" variant="outlined" className="issues-card">
             <div className="issue-flow">
               {issueFlow.map((issue, index) => (
                 <div key={index} className="issue-item">
@@ -333,31 +332,28 @@ function DevelopmentDataDashboard() {
 
         {/* 开发活动 */}
         <Col xs={24} lg={12}>
-          <Card title="开发活动" bordered={false} className="activity-card">
-            <List
-              dataSource={developmentActivities}
-              renderItem={(item) => (
-                <List.Item>
-                  <List.Item.Meta
-                    avatar={
+          <Card title="开发活动" variant="outlined" className="activity-card">
+            <div className="activity-list">
+              {developmentActivities.map((item, index) => (
+                <div key={index} className="activity-item">
+                  <div className="activity-content">
+                    <div className="activity-avatar">
                       <Avatar icon={item.avatar} />
-                    }
-                    title={
+                    </div>
+                    <div className="activity-meta">
                       <div className="activity-title">
                         <span className="user-name">{item.user}</span>
                         <span className="activity-action">{item.action}</span>
                       </div>
-                    }
-                    description={
                       <div className="activity-desc">
                         <span className="project-name">{item.project}</span>
                         <span className="activity-time">{item.time}</span>
                       </div>
-                    }
-                  />
-                </List.Item>
-              )}
-            />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
             <div className="view-more">
               <Button type="text">查看更多活动</Button>
             </div>
@@ -366,7 +362,7 @@ function DevelopmentDataDashboard() {
 
         {/* 团队负载 */}
         <Col xs={24} lg={12}>
-          <Card title="团队负载" bordered={false} className="team-card">
+          <Card title="团队负载" variant="outlined" className="team-card">
             <div className="team-load">
               {teamLoad.map((member, index) => (
                 <div key={index} className="team-member">

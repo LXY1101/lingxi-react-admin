@@ -1,5 +1,5 @@
 import { Card, Input, Tag, Button, Select, Space, Avatar } from 'antd';
-import { SearchOutlined, FilterOutlined, PlusOutlined, ClockCircleOutlined, UserOutlined, TagOutlined, StarOutlined, StarFilled } from '@ant-design/icons';
+import { SearchOutlined, FilterOutlined, PlusOutlined, UserOutlined, TagOutlined, StarOutlined, StarFilled, ClockCircleOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import './index.scss';
 
@@ -15,6 +15,10 @@ interface Issue {
   priority: IssuePriority;
   author: string;
   assignee: string;
+  assignee_name: string;
+  processor: string;
+  processor_name: string;
+  process_description: string;
   labels: string[];
   created_at: string;
   updated_at: string;
@@ -27,27 +31,35 @@ function IssueList() {
   const [issues, setIssues] = useState<Issue[]>([
     {
       id: '1',
-      title: '修复数据看板图表显示异常问题',
-      description: '在数据看板中，AI项目的图表无法正常加载，需要检查API请求和数据处理逻辑。',
-      status: 'open',
+      title: '登录页面兼容性测试',
+      description: '测试登录页面在不同浏览器和设备上的兼容性，包括Chrome、Firefox、Safari和Edge等主流浏览器。',
+      status: 'in_progress',
       priority: 'high',
-      author: '张伟',
-      assignee: '李娜',
-      labels: ['bug', '数据看板', 'high-priority'],
+      author: '张三',
+      assignee: '李四',
+      assignee_name: '李四',
+      processor: '王五',
+      processor_name: '王五',
+      process_description: '已完成Chrome和Firefox的兼容性测试，发现了3个CSS布局问题，正在修复中。',
+      labels: ['测试', '兼容性', 'high-priority'],
       created_at: '2026-01-10',
       updated_at: '2026-01-14',
-      comments: 5,
+      comments: 3,
       is_starred: true
     },
     {
       id: '2',
-      title: '用户中心模块优化',
-      description: '优化用户中心的界面布局和交互体验，提升加载性能。',
-      status: 'in_progress',
+      title: 'API接口自动化测试',
+      description: '为用户管理模块的所有API接口编写自动化测试用例，确保接口功能正常。',
+      status: 'open',
       priority: 'medium',
-      author: '王强',
-      assignee: '张伟',
-      labels: ['enhancement', '用户中心', 'frontend'],
+      author: '李四',
+      assignee: '赵六',
+      assignee_name: '赵六',
+      processor: '赵六',
+      processor_name: '赵六',
+      process_description: '正在编写登录和注册接口的测试用例，已完成50%。',
+      labels: ['测试', '自动化', 'API'],
       created_at: '2026-01-09',
       updated_at: '2026-01-13',
       comments: 8,
@@ -55,13 +67,17 @@ function IssueList() {
     },
     {
       id: '3',
-      title: 'API文档更新',
-      description: '更新所有公开API的文档，添加示例代码和参数说明。',
-      status: 'todo',
-      priority: 'low',
-      author: '刘芳',
-      assignee: '王强',
-      labels: ['documentation', 'backend'],
+      title: '数据导出功能测试',
+      description: '测试数据导出功能，包括Excel、CSV和PDF格式，确保导出数据的准确性和完整性。',
+      status: 'closed',
+      priority: 'medium',
+      author: '王五',
+      assignee: '孙七',
+      assignee_name: '孙七',
+      processor: '孙七',
+      processor_name: '孙七',
+      process_description: '已完成所有格式的导出测试，未发现异常，测试通过。',
+      labels: ['测试', '数据', 'export'],
       created_at: '2026-01-08',
       updated_at: '2026-01-12',
       comments: 2,
@@ -69,13 +85,17 @@ function IssueList() {
     },
     {
       id: '4',
-      title: '权限系统bug修复',
-      description: '管理员角色无法访问某些功能模块，需要检查权限配置。',
-      status: 'review',
-      priority: 'high',
-      author: '李娜',
-      assignee: '刘芳',
-      labels: ['bug', '权限系统', 'backend'],
+      title: '移动端适配测试',
+      description: '测试应用在不同移动设备上的适配情况，包括屏幕尺寸、分辨率和触摸交互。',
+      status: 'todo',
+      priority: 'urgent',
+      author: '赵六',
+      assignee: '张三',
+      assignee_name: '张三',
+      processor: '',
+      processor_name: '',
+      process_description: '待分配处理人',
+      labels: ['测试', '移动端', '适配'],
       created_at: '2026-01-07',
       updated_at: '2026-01-11',
       comments: 12,
@@ -83,13 +103,17 @@ function IssueList() {
     },
     {
       id: '5',
-      title: '移动端适配优化',
-      description: '优化应用在移动端的显示效果和交互体验。',
-      status: 'open',
-      priority: 'medium',
-      author: '张伟',
-      assignee: '李娜',
-      labels: ['enhancement', 'mobile', 'frontend'],
+      title: '性能测试报告生成',
+      description: '根据性能测试结果生成详细的测试报告，包括响应时间、吞吐量和资源使用率等指标。',
+      status: 'review',
+      priority: 'low',
+      author: '孙七',
+      assignee: '李四',
+      assignee_name: '李四',
+      processor: '王五',
+      processor_name: '王五',
+      process_description: '测试报告已完成，正在等待审核。',
+      labels: ['测试', '性能', '报告'],
       created_at: '2026-01-06',
       updated_at: '2026-01-10',
       comments: 6,
@@ -97,40 +121,25 @@ function IssueList() {
     },
     {
       id: '6',
-      title: '数据库性能优化',
-      description: '优化数据库查询性能，减少响应时间。',
-      status: 'closed',
-      priority: 'urgent',
-      author: '王强',
-      assignee: '王强',
-      labels: ['performance', 'database', 'backend'],
+      title: '用户权限测试',
+      description: '测试不同用户角色的权限控制，确保权限分配正确，用户只能访问其授权的功能。',
+      status: 'in_progress',
+      priority: 'high',
+      author: '张三',
+      assignee: '赵六',
+      assignee_name: '赵六',
+      processor: '孙七',
+      processor_name: '孙七',
+      process_description: '已完成管理员和普通用户角色的权限测试，正在测试VIP用户角色。',
+      labels: ['测试', '权限', 'security'],
       created_at: '2026-01-05',
       updated_at: '2026-01-09',
-      comments: 15,
+      comments: 9,
       is_starred: false
     }
   ]);
 
-  // 筛选状态
-  const [filters, setFilters] = useState({
-    status: 'all',
-    priority: 'all',
-    assignee: 'all'
-  });
-
-  // 获取状态颜色
-  const getStatusColor = (status: IssueStatus) => {
-    const colors: Record<IssueStatus, string> = {
-      open: 'blue',
-      in_progress: 'cyan',
-      closed: 'green',
-      todo: 'default',
-      review: 'orange'
-    };
-    return colors[status];
-  };
-
-  // 获取状态文本
+  // 状态文本映射
   const getStatusText = (status: IssueStatus) => {
     const texts: Record<IssueStatus, string> = {
       open: '打开',
@@ -142,11 +151,23 @@ function IssueList() {
     return texts[status];
   };
 
-  // 获取优先级颜色
+  // 状态颜色映射
+  const getStatusColor = (status: IssueStatus) => {
+    const colors: Record<IssueStatus, string> = {
+      open: 'blue',
+      in_progress: 'orange',
+      closed: 'green',
+      todo: 'default',
+      review: 'purple'
+    };
+    return colors[status];
+  };
+
+  // 优先级颜色映射
   const getPriorityColor = (priority: IssuePriority) => {
     const colors: Record<IssuePriority, string> = {
       high: 'red',
-      medium: 'orange',
+      medium: 'gold',
       low: 'green',
       urgent: 'volcano'
     };
@@ -183,8 +204,8 @@ function IssueList() {
               <TagOutlined />
             </div>
             <div className="title-text">
-              <h1 className="page-title">Issue列表</h1>
-              <p className="page-description">管理和跟踪所有开发任务和问题</p>
+              <h1 className="page-title">测试Issue列表</h1>
+              <p className="page-description">管理和跟踪所有测试任务和问题</p>
             </div>
           </div>
           <div className="header-actions">
@@ -195,13 +216,13 @@ function IssueList() {
         </div>
       </div>
 
-      {/* 筛选和搜索区域 */}
+      {/* 搜索和筛选区域 */}
       <div className="filter-section">
         <Card variant="outlined" className="filter-card">
           <div className="filter-content">
             <div className="search-filter">
               <Input
-                placeholder="搜索Issue标题或描述..."
+                placeholder="搜索测试Issue标题或描述..."
                 prefix={<SearchOutlined />}
                 className="search-input"
               />
@@ -234,9 +255,9 @@ function IssueList() {
                   className="filter-select"
                 >
                   <Select.Option value="all">全部</Select.Option>
-                  <Select.Option value="张伟">张伟</Select.Option>
-                  <Select.Option value="李娜">李娜</Select.Option>
-                  <Select.Option value="王强">王强</Select.Option>
+                  <Select.Option value="李四">李四</Select.Option>
+                  <Select.Option value="王五">王五</Select.Option>
+                  <Select.Option value="赵六">赵六</Select.Option>
                 </Select>
                 <Button icon={<FilterOutlined />}>高级筛选</Button>
               </Space>

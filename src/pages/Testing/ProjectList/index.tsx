@@ -21,84 +21,84 @@ interface Project {
 }
 
 function ProjectList() {
-  // Mock项目数据
+  // Mock测试项目数据
   const projects: Project[] = [
     {
       id: '1',
-      name: 'AI助手核心引擎',
+      name: 'AI助手测试套件',
       status: '进行中',
-      description: '基于GPT-4的智能对话系统，支持多轮对话和上下文理解',
-      progress: 78,
-      tags: ['AI', 'Python', '高优先级'],
-      members: 3,
-      views: 234,
-      comments: 18,
-      updateTime: '2小时前',
-      updateLabel: '更新于'
-    },
-    {
-      id: '2',
-      name: '数据可视化平台',
-      status: '进行中',
-      description: '企业级可视化看板，支持实时数据分析和多维度报表展示',
-      progress: 92,
-      tags: ['React', 'ECharts', '中优先级'],
+      description: 'AI助手的功能测试、性能测试和兼容性测试套件',
+      progress: 85,
+      tags: ['自动化测试', '性能测试', '高优先级'],
       members: 4,
       views: 187,
-      comments: 24,
-      updateTime: '5小时前',
-      updateLabel: '更新于'
-    },
-    {
-      id: '3',
-      name: '用户权限管理系统',
-      status: '已完成',
-      description: '基于RBAC的细粒度权限控制，支持多租户和动态权限配置',
-      progress: 100,
-      tags: ['后端', 'Node.js', '已完成'],
-      members: 5,
-      views: 456,
-      comments: 32,
-      updateTime: '1天前',
-      updateLabel: '更新于'
-    },
-    {
-      id: '4',
-      name: '移动端SDK开发',
-      status: '进行中',
-      description: 'iOS和Android双平台SDK，提供统一的API接口和原生性能优化',
-      progress: 45,
-      tags: ['移动端', 'Swift', 'Kotlin'],
-      members: 2,
-      views: 145,
-      comments: 12,
+      comments: 23,
       updateTime: '3小时前',
       updateLabel: '更新于'
     },
     {
+      id: '2',
+      name: '数据可视化平台测试',
+      status: '进行中',
+      description: '数据可视化平台的UI测试和数据准确性验证',
+      progress: 72,
+      tags: ['UI测试', '数据验证', '中优先级'],
+      members: 3,
+      views: 145,
+      comments: 16,
+      updateTime: '6小时前',
+      updateLabel: '更新于'
+    },
+    {
+      id: '3',
+      name: '用户权限管理系统测试',
+      status: '已完成',
+      description: '用户权限管理系统的功能测试和安全测试',
+      progress: 100,
+      tags: ['功能测试', '安全测试', '已完成'],
+      members: 2,
+      views: 203,
+      comments: 12,
+      updateTime: '2天前',
+      updateLabel: '更新于'
+    },
+    {
+      id: '4',
+      name: '移动端SDK测试',
+      status: '进行中',
+      description: '移动端SDK的功能测试和性能测试',
+      progress: 58,
+      tags: ['移动端测试', '功能测试', '性能测试'],
+      members: 5,
+      views: 167,
+      comments: 19,
+      updateTime: '4小时前',
+      updateLabel: '更新于'
+    },
+    {
       id: '5',
-      name: '微服务网关',
+      name: '微服务网关测试',
       status: '已暂停',
-      description: 'API网关服务，支持路由转发、限流熔断、安全认证等功能',
-      progress: 62,
-      tags: ['微服务', 'Go', '暂停中'],
-      members: 1,
-      views: 89,
-      comments: 5,
-      updateTime: '5天前',
+      description: '微服务网关的接口测试和压力测试',
+      progress: 45,
+      tags: ['接口测试', '压力测试', '暂停中'],
+      members: 3,
+      views: 98,
+      comments: 8,
+      updateTime: '3天前',
       updateLabel: '更新于'
     },
     {
       id: '6',
-      name: '智能推荐引擎',
+      name: '智能推荐引擎测试',
       status: '进行中',
-      description: '基于协同过滤和深度学习的个性化推荐系统',
-      progress: 34,
-      tags: ['AI', 'TensorFlow', '高优先级'],
+      description: '智能推荐引擎的算法测试和效果验证',
+      progress: 68,
+      tags: ['算法测试', '效果验证', '高优先级'],
       members: 4,
-      views: 298,
-      comments: 28,
-      updateTime: '1小时前',
+      views: 156,
+      comments: 14,
+      updateTime: '2小时前',
       updateLabel: '更新于'
     }
   ];
@@ -134,22 +134,21 @@ function ProjectList() {
   // 获取标签颜色
   const getTagColor = (tag: string) => {
     const tagColors: Record<string, string> = {
-      'AI': 'purple',
-      'Python': 'green',
+      '自动化测试': 'purple',
+      '性能测试': 'green',
       '高优先级': 'green',
-      'React': 'blue',
-      'ECharts': 'cyan',
+      'UI测试': 'blue',
+      '数据验证': 'cyan',
       '中优先级': 'gold',
-      '后端': 'red',
-      'Node.js': 'orange',
+      '功能测试': 'red',
+      '安全测试': 'orange',
       '已完成': 'green',
-      '移动端': 'magenta',
-      'Swift': 'orange',
-      'Kotlin': 'blue',
-      '微服务': 'purple',
-      'Go': 'orange',
+      '移动端测试': 'magenta',
+      '接口测试': 'blue',
+      '压力测试': 'orange',
       '暂停中': 'default',
-      'TensorFlow': 'red'
+      '算法测试': 'purple',
+      '效果验证': 'red'
     };
     return tagColors[tag] || 'default';
   };
@@ -165,7 +164,7 @@ function ProjectList() {
             </div>
             <div className="title-text">
               <h1 className="page-title">项目列表</h1>
-              <p className="page-description">管理和查看所有开发项目</p>
+              <p className="page-description">管理和查看所有测试项目</p>
             </div>
           </div>
           <div className="header-actions">
@@ -206,11 +205,11 @@ function ProjectList() {
             className="search-input"
           />
           <div className="filter-tags">
-            <div className="filter-tag">AI</div>
-            <div className="filter-tag">Python</div>
+            <div className="filter-tag">自动化测试</div>
+            <div className="filter-tag">性能测试</div>
             <div className="filter-tag">高优先级</div>
-            <div className="filter-tag">React</div>
-            <div className="filter-tag">ECharts</div>
+            <div className="filter-tag">UI测试</div>
+            <div className="filter-tag">功能测试</div>
           </div>
         </div>
       </div>
@@ -306,4 +305,3 @@ function ProjectList() {
 }
 
 export default ProjectList;
-

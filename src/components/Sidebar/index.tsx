@@ -104,6 +104,20 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
           path: "/admin/testing/sandbox",
           dotClass: "menu-item-dot-orange",
         },
+        {
+          key: "testing-project-list",
+          label: "项目列表",
+          path: "/admin/testing/project-list",
+          dotClass: "menu-item-dot-orange",
+          badge: 5,
+        },
+        {
+          key: "testing-issue-list",
+          label: "issue列表",
+          path: "/admin/testing/issue-list",
+          dotClass: "menu-item-dot-blue",
+          badge: 8,
+        },
       ],
     },
     // 应用管理
@@ -154,6 +168,8 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
     // 测试
     if (path.includes("/admin/testing/automation")) return "testing-automation";
     if (path.includes("/admin/testing/sandbox")) return "testing-sandbox";
+    if (path.includes("/admin/testing/project-list")) return "testing-project-list";
+    if (path.includes("/admin/testing/issue-list")) return "testing-issue-list";
     // 应用管理
     if (path.includes("/admin/app/data-board")) return "app-data-board";
     if (path.includes("/admin/app/app-list")) return "app-list";

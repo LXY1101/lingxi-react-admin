@@ -4,7 +4,6 @@ import {
   Row, 
   Col, 
   Progress, 
-  List, 
   Avatar, 
   Button, 
   Tag,
@@ -184,6 +183,13 @@ function TestingDataDashboard() {
     { user: '刘芳', action: '推送了3个提交', project: '权限系统升级', time: '2小时前', avatar: <UserOutlined /> }
   ];
 
+  const testingActivities = [
+    { user: '张明', action: '执行了自动化测试用例', project: '登录功能', time: '30分钟前', avatar: <UserOutlined /> },
+    { user: '李华', action: '发现了新的Bug #456', project: '支付模块', time: '15分钟前', avatar: <BugOutlined /> },
+    { user: '王梅', action: '完成了性能测试报告', project: '订单系统', time: '45分钟前', avatar: <DashboardOutlined /> },
+    { user: '赵刚', action: '修复了UI测试失败问题', project: '用户界面', time: '1小时前', avatar: <UserOutlined /> }
+  ];
+
   const teamLoad = [
     { name: '张伟', load: 12, max: 15, color: '#faad14' },
     { name: '李娜', load: 8, max: 15, color: '#52c41a' },
@@ -231,7 +237,7 @@ function TestingDataDashboard() {
       <Row gutter={[16, 16]} className="stats-section">
         {stats.map((stat, index) => (
           <Col xs={24} sm={12} md={6} key={index}>
-            <Card bordered={false} className="custom-stat-card">
+            <Card variant="outlined" className="custom-stat-card">
               <div className="card-header">
                 <div 
                   className="icon-container"
@@ -260,7 +266,7 @@ function TestingDataDashboard() {
       <Row gutter={[16, 16]} className="main-content">
         {/* 项目健康度 */}
         <Col xs={24} lg={16}>
-          <Card title="项目健康度" bordered={false} className="health-card">
+          <Card title="项目健康度" variant="outlined" className="health-card">
             <div className="health-list">
               {projectHealth.map((project, index) => (
                 <div key={index} className="health-item">
@@ -293,7 +299,7 @@ function TestingDataDashboard() {
 
         {/* Issues流转 */}
         <Col xs={24} lg={8}>
-          <Card title="Issues流转" bordered={false} className="issues-card">
+          <Card title="Issues流转" variant="outlined" className="issues-card">
             <div className="issue-flow">
               {issueFlow.map((issue, index) => (
                 <div key={index} className="issue-item">
@@ -333,31 +339,28 @@ function TestingDataDashboard() {
 
         {/* 测试活动 */}
         <Col xs={24} lg={12}>
-          <Card title="测试活动" bordered={false} className="activity-card">
-            <List
-              dataSource={developmentActivities}
-              renderItem={(item) => (
-                <List.Item>
-                  <List.Item.Meta
-                    avatar={
+          <Card title="测试活动" variant="outlined" className="activity-card">
+            <div className="activity-list">
+              {testingActivities.map((item, index) => (
+                <div key={index} className="activity-item">
+                  <div className="activity-content">
+                    <div className="activity-avatar">
                       <Avatar icon={item.avatar} />
-                    }
-                    title={
+                    </div>
+                    <div className="activity-meta">
                       <div className="activity-title">
                         <span className="user-name">{item.user}</span>
                         <span className="activity-action">{item.action}</span>
                       </div>
-                    }
-                    description={
                       <div className="activity-desc">
                         <span className="project-name">{item.project}</span>
                         <span className="activity-time">{item.time}</span>
                       </div>
-                    }
-                  />
-                </List.Item>
-              )}
-            />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
             <div className="view-more">
               <Button type="text">查看更多活动</Button>
             </div>
@@ -366,7 +369,7 @@ function TestingDataDashboard() {
 
         {/* 团队负载 */}
         <Col xs={24} lg={12}>
-          <Card title="团队负载" bordered={false} className="team-card">
+          <Card title="团队负载" variant="outlined" className="team-card">
             <div className="team-load">
               {teamLoad.map((member, index) => (
                 <div key={index} className="team-member">

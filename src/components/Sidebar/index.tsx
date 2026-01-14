@@ -58,21 +58,28 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
       icon: ProjectOutlined,
       label: "开发",
       name: "Development",
-      defaultPath: "/admin/development/project-board",
+      defaultPath: "/admin/development/data-board",
       menuItems: [
         {
-          key: "development-project-board",
-          label: "项目看板",
-          path: "/admin/development/project-board",
+          key: "development-data-board",
+          label: "数据看板",
+          path: "/admin/development/data-board",
           dotClass: "menu-item-dot-purple",
           badge: 2,
         },
         {
           key: "development-project-list",
-          label: "项目管理",
+          label: "项目列表",
           path: "/admin/development/project-list",
           dotClass: "menu-item-dot-orange",
           badge: 5,
+        },
+        {
+          key: "development-issue-list",
+          label: "issue列表",
+          path: "/admin/development/issue-list",
+          dotClass: "menu-item-dot-blue",
+          badge: 12,
         },
       ],
     },
@@ -140,9 +147,10 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
     if (path.includes("/admin/dashboard/project-board")) return "dashboard-project-board";
     if (path.includes("/admin/dashboard/project-list")) return "dashboard-project-list";
     // 开发
-    if (path.includes("/admin/development/project-board")) return "development-project-board";
+    if (path.includes("/admin/development/data-board")) return "development-data-board";
     if (path.includes("/admin/development/project-list"))
       return "development-project-list";
+    if (path.includes("/admin/development/issue-list")) return "development-issue-list";
     // 测试
     if (path.includes("/admin/testing/automation")) return "testing-automation";
     if (path.includes("/admin/testing/sandbox")) return "testing-sandbox";
@@ -154,7 +162,7 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
 
   const handleMenuClick = (key: string) => {
     const module = modules.find((m) => m.key === key);
-    navigate(module?.defaultPath || "/admin/development/project-board");
+    navigate(module?.defaultPath || "/admin/dashboard/project-board");
   };
 
   const recentFiles = [

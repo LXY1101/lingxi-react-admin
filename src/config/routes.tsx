@@ -15,11 +15,11 @@ export const routes = [
   },
   {
     path: '/',
-    element: <Navigate to="/admin/development/board" replace />,
+    element: <Navigate to="/admin/dashboard/project-board" replace />,
   },
   {
     path: '*',
-    element: <Navigate to="/admin/development/board" replace />,
+    element: <Navigate to="/admin/dashboard/project-board" replace />,
   },
 ];
 
@@ -41,8 +41,8 @@ export const adminRoutes = [
     label: '测试',
   },
   {
-    path: 'apps',
-    key: 'apps',
+    path: 'app',
+    key: 'app',
     label: '应用管理',
   },
 ];

@@ -28,25 +28,25 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
   const { logout } = useAuth();
 
   const modules = [
-    // 控制台
+    // 工作台
     {
       key: "dashboard",
       icon: DashboardOutlined,
       label: "工作台",
       name: "工作台",
-      defaultPath: "/admin/dashboard/board",
+      defaultPath: "/admin/dashboard/project-board",
       menuItems: [
         {
-          key: "dashboard-board",
+          key: "dashboard-project-board",
           label: "项目看板",
-          path: "/admin/dashboard/board",
+          path: "/admin/dashboard/project-board",
           dotClass: "menu-item-dot-purple",
           badge: 2,
         },
         {
-          key: "dashboard-list",
+          key: "dashboard-project-list",
           label: "项目管理",
-          path: "/admin/dashboard/list",
+          path: "/admin/dashboard/project-list",
           dotClass: "menu-item-dot-orange",
           badge: 5,
         },
@@ -58,19 +58,19 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
       icon: ProjectOutlined,
       label: "开发",
       name: "Development",
-      defaultPath: "/admin/development/board",
+      defaultPath: "/admin/development/project-board",
       menuItems: [
         {
-          key: "development-board",
+          key: "development-project-board",
           label: "项目看板",
-          path: "/admin/development/board",
+          path: "/admin/development/project-board",
           dotClass: "menu-item-dot-purple",
           badge: 2,
         },
         {
-          key: "development-management",
+          key: "development-project-list",
           label: "项目管理",
-          path: "/admin/development/manage",
+          path: "/admin/development/project-list",
           dotClass: "menu-item-dot-orange",
           badge: 5,
         },
@@ -101,23 +101,23 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
     },
     // 应用管理
     {
-      key: "apps",
+      key: "app",
       icon: AppstoreOutlined,
       label: "应用管理",
       name: "Applications",
-      defaultPath: "/admin/apps/data-board",
+      defaultPath: "/admin/app/data-board",
       menuItems: [
         {
-          key: "apps-data-board",
+          key: "app-data-board",
           label: "数据看板",
-          path: "/admin/apps/data-board",
+          path: "/admin/app/data-board",
           dotClass: "menu-item-dot-purple",
           badge: 3,
         },
         {
-          key: "apps-list",
+          key: "app-list",
           label: "应用列表",
-          path: "/admin/apps/list",
+          path: "/admin/app/app-list",
           dotClass: "menu-item-dot-orange",
           badge: 8,
         },
@@ -130,31 +130,31 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
     if (path.includes("/admin/dashboard")) return "dashboard";
     if (path.includes("/admin/development")) return "development";
     if (path.includes("/admin/testing")) return "testing";
-    if (path.includes("/admin/apps")) return "apps";
+    if (path.includes("/admin/app")) return "app";
     return "dashboard";
   };
 
   const getActiveSubKeyFromPath = () => {
     const path = location.pathname;
-    // 控制台
-    if (path.includes("/admin/dashboard/board")) return "dashboard-board";
-    if (path.includes("/admin/dashboard/list")) return "dashboard-list";
+    // 工作台
+    if (path.includes("/admin/dashboard/project-board")) return "dashboard-project-board";
+    if (path.includes("/admin/dashboard/project-list")) return "dashboard-project-list";
     // 开发
-    if (path.includes("/admin/development/board")) return "development-board";
-    if (path.includes("/admin/development/manage"))
-      return "development-management";
+    if (path.includes("/admin/development/project-board")) return "development-project-board";
+    if (path.includes("/admin/development/project-list"))
+      return "development-project-list";
     // 测试
     if (path.includes("/admin/testing/automation")) return "testing-automation";
     if (path.includes("/admin/testing/sandbox")) return "testing-sandbox";
     // 应用管理
-    if (path.includes("/admin/apps/data-board")) return "apps-data-board";
-    if (path.includes("/admin/apps/list")) return "apps-list";
+    if (path.includes("/admin/app/data-board")) return "app-data-board";
+    if (path.includes("/admin/app/app-list")) return "app-list";
     return "";
   };
 
   const handleMenuClick = (key: string) => {
     const module = modules.find((m) => m.key === key);
-    navigate(module?.defaultPath || "/admin/development/board");
+    navigate(module?.defaultPath || "/admin/development/project-board");
   };
 
   const recentFiles = [

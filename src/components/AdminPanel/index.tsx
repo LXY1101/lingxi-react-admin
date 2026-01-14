@@ -1,12 +1,13 @@
 import { Layout } from 'antd';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import ProjectBoard from '../../pages/ProjectBoard';
-import ProjectManagement from '../../pages/ProjectManagement';
-import ProjectList from '../../pages/ProjectList';
-import TestingAutomation from '../../pages/TestingAutomation';
-import TestingSandbox from '../../pages/TestingSandbox';
-import AppsDataBoard from '../../pages/AppsDataBoard';
-import AppsList from '../../pages/AppsList';
+import DashboardProjectBoard from '../../pages/Dashboard/ProjectBoard';
+import DashboardProjectList from '../../pages/Dashboard/ProjectList';
+import DevelopmentProjectBoard from '../../pages/Development/ProjectBoard';
+import DevelopmentProjectList from '../../pages/Development/ProjectList';
+import TestingAutomation from '../../pages/Testing/Automation';
+import TestingSandbox from '../../pages/Testing/Sandbox';
+import AppDataBoard from '../../pages/AppManagement/DataBoard';
+import AppList from '../../pages/AppManagement/AppList';
 import './index.scss';
 
 const { Content } = Layout;
@@ -19,15 +20,15 @@ function AdminPanel() {
         <Content className="admin-content">
           <div className="admin-content-inner">
             <Routes>
-              {/* 控制台 */}
-              <Route path="dashboard" element={<Navigate to="dashboard/board" replace />} />
-              <Route path="dashboard/board" element={<ProjectBoard />} />
-              <Route path="dashboard/list" element={<ProjectList />} />
+              {/* 工作台 */}
+              <Route path="dashboard" element={<Navigate to="dashboard/project-board" replace />} />
+              <Route path="dashboard/project-board" element={<DashboardProjectBoard />} />
+              <Route path="dashboard/project-list" element={<DashboardProjectList />} />
 
               {/* 开发 */}
-              <Route path="development" element={<Navigate to="development/board" replace />} />
-              <Route path="development/board" element={<ProjectBoard />} />
-              <Route path="development/manage" element={<ProjectManagement />} />
+              <Route path="development" element={<Navigate to="development/project-board" replace />} />
+              <Route path="development/project-board" element={<DevelopmentProjectBoard />} />
+              <Route path="development/project-list" element={<DevelopmentProjectList />} />
 
               {/* 测试 */}
               <Route path="testing" element={<Navigate to="testing/automation" replace />} />
@@ -35,13 +36,13 @@ function AdminPanel() {
               <Route path="testing/sandbox" element={<TestingSandbox />} />
 
               {/* 应用管理 */}
-              <Route path="apps" element={<Navigate to="apps/data-board" replace />} />
-              <Route path="apps/data-board" element={<AppsDataBoard />} />
-              <Route path="apps/list" element={<AppsList />} />
+              <Route path="app" element={<Navigate to="app/data-board" replace />} />
+              <Route path="app/data-board" element={<AppDataBoard />} />
+              <Route path="app/app-list" element={<AppList />} />
 
               {/* 默认 */}
-              <Route path="" element={<Navigate to="development/board" replace />} />
-              <Route path="*" element={<Navigate to="development/board" replace />} />
+              <Route path="" element={<Navigate to="development/project-board" replace />} />
+              <Route path="*" element={<Navigate to="development/project-board" replace />} />
             </Routes>
           </div>
         </Content>

@@ -1,8 +1,8 @@
 import "./index.scss";
 
-function ProjectManagement() {
+function ProjectList() {
   return (
-    <div className="project-management-page">
+    <div className="project-list-page">
       <div className="page-header">
         <h2 className="page-title">项目管理</h2>
       </div>
@@ -10,5 +10,5 @@ function ProjectManagement() {
   );
 }
 
-export default ProjectManagement;
+export default ProjectList;
 

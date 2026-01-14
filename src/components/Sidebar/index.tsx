@@ -143,6 +143,13 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
           dotClass: "menu-item-dot-orange",
           badge: 8,
         },
+        {
+          key: "app-permissions",
+          label: "应用权限",
+          path: "/admin/app/permissions",
+          dotClass: "menu-item-dot-blue",
+          badge: 0,
+        },
       ],
     },
   ];

@@ -9,5 +9,74 @@
     font-size: 20px;
     font-weight: 600;
   }
+
+  .filter-group {
+    margin-bottom: 24px;
+  }
+
+  .stats-cards {
+    margin-bottom: 24px;
+  }
+
+  .charts-section {
+    margin-bottom: 24px;
+  }
+
+  .performance-section {
+    margin-bottom: 24px;
+  }
+
+  .chart-container {
+    margin-top: 16px;
+    height: 300px;
+  }
+
+  .chart-description {
+    font-size: 12px;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .resource-container {
+    margin-top: 16px;
+  }
+
+  .resource-item {
+    margin-bottom: 16px;
+  }
+
+  .progress-bar-container {
+    height: 8px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+
+  .performance-card {
+    margin-top: 24px;
+  }
+
+  /* 单个筛选器项容器样式 */
+  .filter-item-container {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: #ffffff;
+  }
+
+  /* 优化筛选器文本样式 */
+  .filter-item-container .ant-typography {
+    color: #555555;
+    font-weight: 400;
+    font-size: 14px;
+    margin-right: 8px;
+  }
 }
+
 

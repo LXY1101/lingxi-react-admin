@@ -13,6 +13,7 @@ import TestingProjectList from '../../pages/Testing/ProjectList';
 import AppDataBoard from '../../pages/AppManagement/DataBoard';
 import AppList from '../../pages/AppManagement/AppList';
 import Profile from '../../pages/Profile';
+import AppPermissions from '../../pages/AppManagement/AppPermissions';
 import './index.scss';
 
 const { Content } = Layout;
@@ -47,6 +48,8 @@ function AdminPanel() {
               <Route path="app" element={<Navigate to="app/data-board" replace />} />
               <Route path="app/data-board" element={<AppDataBoard />} />
               <Route path="app/app-list" element={<AppList />} />
+              <Route path="app/permissions" element={<AppPermissions />} />
+
 
               {/* 个人中心 */}
               <Route path="profile" element={<Profile />} />

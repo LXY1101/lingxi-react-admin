@@ -1,10 +1,9 @@
-import { Input, Badge, Avatar, Button } from 'antd';
+import { Input, Badge, Avatar } from 'antd';
 import {
-  SearchOutlined,
   DashboardOutlined,
   ProjectOutlined,
   FileTextOutlined,
-  TeamOutlined,
+  AppstoreOutlined,
   BellOutlined,
   SettingOutlined,
   LogoutOutlined,
@@ -28,7 +27,105 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
   const location = useLocation();
   const { logout } = useAuth();
 
-  const getSelectedKey = () => {
+  const modules = [
+    // 控制台
+    {
+      key: 'dashboard',
+      icon: DashboardOutlined,
+      label: '工作台',
+      name: '工作台',
+      defaultPath: '/admin/dashboard/board',
+      menuItems: [
+        {
+          key: 'dashboard-board',
+          label: '项目看板',
+          path: '/admin/dashboard/board',
+          dotClass: 'menu-item-dot-purple',
+          badge: 2,
+        },
+        {
+          key: 'dashboard-list',
+          label: '项目管理',
+          path: '/admin/dashboard/list',
+          dotClass: 'menu-item-dot-orange',
+          badge: 5,
+        },
+      ],
+    },
+    // 开发
+    {
+      key: 'development',
+      icon: ProjectOutlined,
+      label: '开发',
+      name: 'Development',
+      defaultPath: '/admin/development/board',
+      menuItems: [
+        {
+          key: 'development-board',
+          label: '项目看板',
+          path: '/admin/development/board',
+          dotClass: 'menu-item-dot-purple',
+          badge: 2,
+        },
+        {
+          key: 'development-management',
+          label: '项目管理',
+          path: '/admin/development/manage',
+          dotClass: 'menu-item-dot-orange',
+          badge: 5,
+        },
+      ],
+    },
+    // 测试
+    {
+      key: 'testing',
+      icon: FileTextOutlined,
+      label: '测试',
+      name: 'Testing',
+      defaultPath: '/admin/testing/automation',
+      menuItems: [
+        {
+          key: 'testing-automation',
+          label: '自动化测试',
+          path: '/admin/testing/automation',
+          dotClass: 'menu-item-dot-purple',
+          badge: 1,
+        },
+        {
+          key: 'testing-sandbox',
+          label: '沙盒测试',
+          path: '/admin/testing/sandbox',
+          dotClass: 'menu-item-dot-orange',
+        },
+      ],
+    },
+    // 应用管理
+    {
+      key: 'apps',
+      icon: AppstoreOutlined,
+      label: '应用管理',
+      name: 'Applications',
+      defaultPath: '/admin/apps/data-board',
+      menuItems: [
+        {
+          key: 'apps-data-board',
+          label: '数据看板',
+          path: '/admin/apps/data-board',
+          dotClass: 'menu-item-dot-purple',
+          badge: 3,
+        },
+        {
+          key: 'apps-list',
+          label: '应用列表',
+          path: '/admin/apps/list',
+          dotClass: 'menu-item-dot-orange',
+          badge: 8,
+        },
+      ],
+    },
+  ];
+
+  const getModuleKeyFromPath = () => {
     const path = location.pathname;
     if (path.includes('/admin/dashboard')) return 'dashboard';
     if (path.includes('/admin/development')) return 'development';
@@ -37,14 +134,26 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
     return 'dashboard';
   };
 
+  const getActiveSubKeyFromPath = () => {
+    const path = location.pathname;
+    // 控制台
+    if (path.includes('/admin/dashboard/board')) return 'dashboard-board';
+    if (path.includes('/admin/dashboard/list')) return 'dashboard-list';
+    // 开发
+    if (path.includes('/admin/development/board')) return 'development-board';
+    if (path.includes('/admin/development/manage')) return 'development-management';
+    // 测试
+    if (path.includes('/admin/testing/automation')) return 'testing-automation';
+    if (path.includes('/admin/testing/sandbox')) return 'testing-sandbox';
+    // 应用管理
+    if (path.includes('/admin/apps/data-board')) return 'apps-data-board';
+    if (path.includes('/admin/apps/list')) return 'apps-list';
+    return '';
+  };
+
   const handleMenuClick = (key: string) => {
-    const routeMap: Record<string, string> = {
-      dashboard: '/admin/dashboard',
-      development: '/admin/development',
-      testing: '/admin/testing',
-      apps: '/admin/apps',
-    };
-    navigate(routeMap[key] || '/admin/dashboard');
+    const module = modules.find((m) => m.key === key);
+    navigate(module?.defaultPath || '/admin/development/board');
   };
 
   const recentFiles = [
@@ -53,14 +162,9 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
     { id: 3, name: 'Website Redesign', time: '5h ago' },
   ];
 
-  const modules = [
-    { key: 'dashboard', icon: DashboardOutlined, label: '开发', name: 'Development' },
-    { key: 'development', icon: ProjectOutlined, label: '测试', name: 'Testing' },
-    { key: 'testing', icon: FileTextOutlined, label: '应用', name: 'Applications' },
-    { key: 'apps', icon: TeamOutlined, label: '用户管理', name: 'Team' },
-  ];
-
-  const activeModule = modules.find(m => m.key === getSelectedKey()) || modules[0];
+  const activeModule = modules.find(m => m.key === getModuleKeyFromPath()) || modules[0];
+  const activeSubKey = getActiveSubKeyFromPath();
+  const activeMenuItems = activeModule.menuItems || [];
 
   return (
     <div className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
@@ -83,7 +187,7 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
         <div className="sidebar-module-icons">
           {modules.map((module) => {
             const Icon = module.icon;
-            const isActive = getSelectedKey() === module.key;
+            const isActive = activeModule.key === module.key;
             return (
               <button
                 key={module.key}
@@ -150,30 +254,29 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
           </div>
 
           {/* ACTIVE 部分 */}
-          <div className="sidebar-section">
-            <div className="sidebar-section-header">
-              <span className="sidebar-section-title">ACTIVE</span>
-              <a href="#" className="sidebar-section-link">View All</a>
-            </div>
-            <div className="sidebar-menu">
-              <div
-                className={`sidebar-menu-item ${getSelectedKey() === 'dashboard' ? 'active' : ''}`}
-                onClick={() => handleMenuClick('dashboard')}
-              >
-                <div className="menu-item-dot menu-item-dot-purple"></div>
-                <span className="menu-item-text">项目看板</span>
-                <Badge count={2} size="small" />
+          {activeMenuItems.length > 0 && (
+            <div className="sidebar-section">
+              <div className="sidebar-section-header">
+                <span className="sidebar-section-title">ACTIVE</span>
+                <a href="#" className="sidebar-section-link">View All</a>
               </div>
-              <div
-                className={`sidebar-menu-item ${getSelectedKey() === 'development' ? 'active' : ''}`}
-                onClick={() => handleMenuClick('development')}
-              >
-                <div className="menu-item-dot menu-item-dot-orange"></div>
-                <span className="menu-item-text">项目管理</span>
-                <Badge count={5} size="small" />
+              <div className="sidebar-menu">
+                {activeMenuItems.map((item) => (
+                  <div
+                    key={item.key}
+                    className={`sidebar-menu-item ${activeSubKey === item.key ? 'active' : ''}`}
+                    onClick={() => navigate(item.path)}
+                  >
+                    <div className={`menu-item-dot ${item.dotClass}`}></div>
+                    <span className="menu-item-text">{item.label}</span>
+                    {typeof item.badge === 'number' && item.badge > 0 && (
+                      <Badge count={item.badge} size="small" />
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
+          )}
 
           {/* RECENT FILES 部分 */}
           <div className="sidebar-section">

@@ -17,9 +17,6 @@ function HomePage() {
       <ResizableLayout
         left={<AdminPanel />}
         right={<ChatWindow />}
-        defaultRightWidth={300}
-        minLeftWidth={400}
-        minRightWidth={300}
       />
     </div>
   );

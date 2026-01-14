@@ -49,7 +49,7 @@ function LoginPage() {
           name="login"
           onFinish={onFinish}
           autoComplete="off"
-          size="large"
+          size="middle"
           className="login-form"
         >
           <Form.Item

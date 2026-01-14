@@ -12,8 +12,8 @@ interface ResizableLayoutProps {
 function ResizableLayout({
   left,
   right,
-  defaultRightWidth = 400,
-  minLeftWidth = 300,
+  defaultRightWidth = 300,
+  minLeftWidth = 400,
   minRightWidth = 300,
 }: ResizableLayoutProps) {
   const [rightWidth, setRightWidth] = useState(defaultRightWidth);

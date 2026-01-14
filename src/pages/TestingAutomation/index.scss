@@ -1,13 +1,502 @@
-.testing-automation-page {
+.testing-data-dashboard {
   padding: 24px;
-
-  .page-header {
-    margin-bottom: 16px;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  
+  // 全局覆盖日期选择器样式
+  :global {
+    // 日期选择器范围选择颜色
+    .ant-picker-cell-in-range .ant-picker-cell-inner,
+    .ant-picker-cell-range-middle .ant-picker-cell-inner {
+      background-color: rgba(114, 46, 209, 0.1) !important;
+      color: #722ed1 !important;
+      border-color: #722ed1 !important;
+    }
+    
+    // 日期选择器范围开始和结束
+    .ant-picker-cell-range-start .ant-picker-cell-inner,
+    .ant-picker-cell-range-end .ant-picker-cell-inner {
+      background-color: #722ed1 !important;
+      color: #fff !important;
+      border-color: #722ed1 !important;
+    }
+    
+    // 日期选择器范围悬停
+    .ant-picker-cell-range-hover .ant-picker-cell-inner {
+      background-color: rgba(114, 46, 209, 0.3) !important;
+    }
+    
+    // 日期选择器活动状态
+    .ant-picker-cell-active-with-range .ant-picker-cell-inner {
+      background-color: #722ed1 !important;
+      color: #fff !important;
+    }
+    
+    // 日期选择器悬停状态
+    .ant-picker-cell-hover-with-range .ant-picker-cell-inner {
+      background-color: rgba(114, 46, 209, 0.3) !important;
+    }
   }
 
-  .page-title {
-    font-size: 20px;
-    font-weight: 600;
+  // 页面头部
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    .header-content {
+      .title-with-icon {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .title-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background-color: #f5f0ff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        color: #722ed1;
+      }
+
+      .title-text {
+        .page-title {
+          font-size: 28px;
+          font-weight: 600;
+          color: #000000d9;
+          margin-bottom: 8px;
+        }
+
+        .page-subtitle {
+          font-size: 14px;
+          color: #00000073;
+        }
+      }
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+
+      // 日期选择器主题色样式
+      .ant-picker {
+        border-color: #722ed1;
+        
+        &:hover {
+          border-color: #8b5cf6;
+        }
+        
+        &-focused {
+          border-color: #722ed1;
+          box-shadow: 0 0 0 2px rgba(114, 46, 209, 0.2);
+        }
+        
+        // 下划线颜色
+        &-active-bar {
+          background-color: #722ed1;
+        }
+        
+        .ant-picker-input input {
+          color: #722ed1;
+        }
+        
+        .ant-picker-suffix {
+          color: #722ed1;
+        }
+        
+        .ant-picker-range-separator {
+          color: #722ed1;
+        }
+      }
+      
+      // 日期选择器全局样式覆盖
+      .ant-picker-dropdown {
+        // 直接覆盖Ant Design的CSS变量
+        --ant-date-picker-cell-active-with-range-bg: #722ed1 !important;
+        --ant-date-picker-cell-hover-with-range-bg: rgba(114, 46, 209, 0.3) !important;
+        --ant-date-picker-cell-range-border-color: #722ed1 !important;
+        --ant-date-picker-cell-range-hover-bg: rgba(114, 46, 209, 0.3) !important;
+        --ant-date-picker-cell-range-bg: rgba(114, 46, 209, 0.1) !important;
+        --ant-date-picker-cell-selected-bg: #722ed1 !important;
+        
+        // 星期标题
+        .ant-picker-header {
+          .ant-picker-week-title {
+            color: #722ed1 !important;
+          }
+        }
+        
+        // 日期表格
+        .ant-picker-content {
+          // 日期单元格
+          .ant-picker-cell {
+            // 普通日期文字
+            .ant-picker-cell-inner {
+              color: #722ed1 !important;
+            }
+            
+            // 今天日期
+            &-today .ant-picker-cell-inner {
+              border: 1px solid #722ed1 !important;
+              color: #722ed1 !important;
+              background-color: rgba(114, 46, 209, 0.05) !important;
+            }
+            
+            // 选中的单个日期
+            &-selected .ant-picker-cell-inner {
+              background-color: #722ed1 !important;
+              color: #fff !important;
+            }
+            
+            // 选中范围的背景 - 确保覆盖所有范围相关样式
+            &-in-range,
+            &-range-middle {
+              .ant-picker-cell-inner {
+                background-color: rgba(114, 46, 209, 0.1) !important;
+                border-color: #722ed1 !important;
+                color: #722ed1 !important;
+              }
+            }
+            
+            // 选中范围的开始和结束
+            &-range-start,
+            &-range-end {
+              .ant-picker-cell-inner {
+                background-color: #722ed1 !important;
+                color: #fff !important;
+                border-color: #722ed1 !important;
+              }
+            }
+            
+            // 范围选择时的活动状态
+            &-active-with-range .ant-picker-cell-inner {
+              background-color: #722ed1 !important;
+              color: #fff !important;
+            }
+            
+            // 范围选择时的悬停状态
+            &-hover-with-range .ant-picker-cell-inner {
+              background-color: rgba(114, 46, 209, 0.3) !important;
+            }
+            
+            // 确保所有选中的日期都使用正确的背景色
+            &[class*="-in-range"],
+            &[class*="-range-"],
+            &[class*="-selected"] {
+              .ant-picker-cell-inner {
+                // 对于范围中间的日期
+                &:not(&.ant-picker-cell-range-start:not(&.ant-picker-cell-range-end),
+                      &.ant-picker-cell-range-end:not(&.ant-picker-cell-range-start)) {
+                  background-color: rgba(114, 46, 209, 0.1) !important;
+                }
+                
+                // 对于范围开始和结束日期
+                &.ant-picker-cell-range-start,
+                &.ant-picker-cell-range-end {
+                  background-color: #722ed1 !important;
+                  color: #fff !important;
+                }
+              }
+            }
+          }
+        }
+      }
+      
+      // 直接在日期选择器组件上添加样式，确保更高优先级
+      .ant-picker-range {
+        .ant-picker-panel {
+          .ant-picker-content {
+            .ant-picker-cell {
+              &-in-range .ant-picker-cell-inner,
+              &-range-middle .ant-picker-cell-inner {
+                background-color: rgba(114, 46, 209, 0.1) !important;
+                color: #722ed1 !important;
+              }
+              
+              &-range-start .ant-picker-cell-inner,
+              &-range-end .ant-picker-cell-inner {
+                background-color: #722ed1 !important;
+                color: #fff !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // 统计卡片区域
+  .stats-section {
+    margin-bottom: 24px;
+  }
+
+  .custom-stat-card {
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    padding: 24px;
+    background-color: #ffffff;
+
+    &:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .icon-container {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background-color: #f5f0ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #722ed1;
+      font-size: 24px;
+    }
+
+    .change-indicator {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 500;
+      
+      &.positive {
+        background-color: #f6ffed;
+        color: #52c41a;
+      }
+      
+      &.negative {
+        background-color: #fff2f0;
+        color: #ff4d4f;
+      }
+    }
+
+    .card-value {
+      font-size: 40px;
+      font-weight: 600;
+      color: #1f1f1f;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      color: #8c8c8c;
+      font-weight: 400;
+    }
+  }
+
+  // 主要内容区域
+  .main-content {
+    margin-bottom: 24px;
+  }
+
+  // 项目健康度卡片
+  .health-card {
+    border-radius: 8px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+
+    .health-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .health-item {
+      .health-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+
+        .project-info {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          .project-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #000000d9;
+          }
+        }
+
+        .progress-percent {
+          font-size: 14px;
+          font-weight: 600;
+          color: #000000d9;
+        }
+      }
+
+      .project-metrics {
+        display: flex;
+        gap: 16px;
+        margin-top: 8px;
+        font-size: 12px;
+        color: #00000073;
+      }
+    }
+  }
+
+  // Issues流转卡片
+  .issues-card {
+    border-radius: 8px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+
+    .issue-flow {
+      margin-bottom: 24px;
+
+      .issue-item {
+        margin-bottom: 16px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        .issue-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 8px;
+
+          .issue-status {
+            font-size: 14px;
+            font-weight: 500;
+            color: #000000d9;
+          }
+        }
+
+        .issue-count {
+          font-size: 20px;
+          font-weight: 600;
+          color: #000000d9;
+          margin-bottom: 8px;
+        }
+      }
+    }
+
+    .completion-rate {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 24px;
+      border-top: 1px solid #f0f0f0;
+
+      .rate-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 16px;
+
+        .rate-value {
+          font-size: 20px;
+          font-weight: 600;
+          color: #1677ff;
+        }
+      }
+    }
+  }
+
+  // 开发活动卡片
+  .activity-card {
+    border-radius: 8px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+
+    .activity-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .user-name {
+        font-size: 14px;
+        font-weight: 500;
+        color: #000000d9;
+      }
+
+      .activity-action {
+        font-size: 14px;
+        color: #000000d9;
+      }
+    }
+
+    .activity-desc {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+      color: #00000073;
+
+      .project-name {
+        background-color: #f5f0ff;
+        color: #722ed1;
+        padding: 2px 8px;
+        border-radius: 4px;
+      }
+    }
+
+    .view-more {
+      display: flex;
+      justify-content: center;
+      margin-top: 16px;
+
+      button {
+        color: #722ed1 !important;
+        font-weight: 500;
+      }
+    }
+  }
+
+  // 团队负载卡片
+  .team-card {
+    border-radius: 8px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+
+    .team-load {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .team-member {
+      .member-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+
+        .member-info {
+          display: flex;
+          align-items: center;
+
+          .member-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #000000d9;
+          }
+        }
+
+        .load-value {
+          font-size: 14px;
+          font-weight: 600;
+          color: #000000d9;
+        }
+      }
+    }
   }
 }
 

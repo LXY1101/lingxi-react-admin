@@ -3,13 +3,14 @@ import { Form, Input, Button, Card, message } from 'antd';
 import { UserOutlined, LockOutlined, LoginOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import './index.scss';
+import styles from './index.module.scss';
 
 function LoginPage() {
   const navigate = useNavigate();
   const { login, isAuthenticated } = useAuth();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
 
   // 如果已登录，重定向到管理后台
   useEffect(() => {
@@ -24,25 +25,26 @@ function LoginPage() {
     setLoading(false);
 
     if (success) {
-      message.success('登录成功！');
+      messageApi.success('登录成功！');
       navigate('/admin/dashboard', { replace: true });
     } else {
-      message.error('用户名或密码错误！');
+      messageApi.error('用户名或密码错误！');
     }
   };
 
   return (
-    <div className="login-page">
-      <div className="login-background">
-        <div className="login-background-pattern"></div>
+    <div className={styles["login-page"]}>
+      {contextHolder}
+      <div className={styles["login-background"]}>
+        <div className={styles["login-background-pattern"]}></div>
       </div>
-      <Card className="login-card">
-        <div className="login-header">
-          <div className="login-logo">
+      <Card className={styles["login-card"]}>
+        <div className={styles["login-header"]}>
+          <div className={styles["login-logo"]}>
             <LoginOutlined />
           </div>
-          <h1 className="login-title">欢迎回来</h1>
-          <p className="login-subtitle">请登录您的账户</p>
+          <h1 className={styles["login-title"]}>欢迎回来</h1>
+          <p className={styles["login-subtitle"]}>请登录您的账户</p>
         </div>
         <Form
           form={form}
@@ -50,7 +52,7 @@ function LoginPage() {
           onFinish={onFinish}
           autoComplete="off"
           size="middle"
-          className="login-form"
+          className={styles["login-form"]}
         >
           <Form.Item
             name="username"
@@ -59,7 +61,7 @@ function LoginPage() {
             <Input
               prefix={<UserOutlined />}
               placeholder="用户名"
-              className="login-input"
+              className={styles["login-input"]}
             />
           </Form.Item>
 
@@ -73,7 +75,7 @@ function LoginPage() {
             <Input.Password
               prefix={<LockOutlined />}
               placeholder="密码"
-              className="login-input"
+              className={styles["login-input"]}
             />
           </Form.Item>
 
@@ -81,7 +83,7 @@ function LoginPage() {
             <Button
               type="primary"
               htmlType="submit"
-              className="login-button"
+              className={styles["login-button"]}
               loading={loading}
               block
             >
@@ -89,7 +91,7 @@ function LoginPage() {
             </Button>
           </Form.Item>
         </Form>
-        <div className="login-footer">
+        <div className={styles["login-footer"]}>
           <p>提示：用户名任意，密码至少6位</p>
         </div>
       </Card>

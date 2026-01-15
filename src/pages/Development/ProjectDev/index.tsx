@@ -17,7 +17,7 @@ import {
   CalendarOutlined,
   PieChartOutlined,
 } from '@ant-design/icons';
-import './index.scss';
+import './index.module.scss';
 
 const { Sider, Content } = Layout;
 const { Title } = Typography;

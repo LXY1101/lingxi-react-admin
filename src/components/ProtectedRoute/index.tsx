@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import './index.scss';
+import styles from './index.module.scss';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -25,7 +25,7 @@ function ProtectedRoute({ children }: ProtectedRouteProps) {
             border: '4px solid rgba(255, 255, 255, 0.3)',
             borderTop: '4px solid #fff',
             borderRadius: '50%',
-            animation: 'spin 1s linear infinite',
+            animation: `${styles["spin"]} 1s linear infinite`,
             margin: '0 auto 20px'
           }}></div>
           <p style={{ color: '#fff', fontSize: '16px', fontWeight: 500 }}>加载中...</p>

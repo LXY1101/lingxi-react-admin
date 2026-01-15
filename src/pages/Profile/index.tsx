@@ -15,7 +15,7 @@ import {
   LinkOutlined,
   CheckCircleOutlined,
 } from "@ant-design/icons";
-import "./index.scss";
+import styles from "./index.module.scss";
 
 function Profile() {
   const navigate = useNavigate();
@@ -45,34 +45,34 @@ function Profile() {
   };
 
   return (
-    <div className="profile-page">
-      <div className="profile-header">
-        <button onClick={() => navigate(-1)} className="profile-back-btn">
-          <ArrowLeftOutlined className="icon" />
-          <span className="text">返回</span>
+    <div className={styles["profile-page"]}>
+      <div className={styles["profile-header"]}>
+        <button onClick={() => navigate(-1)} className={styles["profile-back-btn"]}>
+          <ArrowLeftOutlined className={styles.icon} />
+          <span className={styles.text}>返回</span>
         </button>
-        <h1 className="profile-title">个人中心</h1>
-        <p className="profile-subtitle">管理您的个人信息和账号设置</p>
+        <h1 className={styles["profile-title"]}>个人中心</h1>
+        <p className={styles["profile-subtitle"]}>管理您的个人信息和账号设置</p>
       </div>
 
-      <div className="profile-container">
-        <div className="profile-hero-card">
-          <div className="profile-hero-content">
+      <div className={styles["profile-container"]}>
+        <div className={styles["profile-hero-card"]}>
+          <div className={styles["profile-hero-content"]}>
             <Avatar
               size={96}
               src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=128&h=128&fit=crop&crop=faces"
             />
-            <div className="profile-hero-right">
-              <div className="profile-summary-top">
+            <div className={styles["profile-hero-right"]}>
+              <div className={styles["profile-summary-top"]}>
                 <div>
-                  <div className="profile-name">{formData.realName}</div>
-                  <div className="profile-username">@{formData.username}</div>
-                  <div className="profile-meta">
-                    <div className="profile-meta-item">
+                  <div className={styles["profile-name"]}>{formData.realName}</div>
+                  <div className={styles["profile-username"]}>@{formData.username}</div>
+                  <div className={styles["profile-meta"]}>
+                    <div className={styles["profile-meta-item"]}>
                       <IdcardOutlined />
                       <span>{formData.position}</span>
                     </div>
-                    <div className="profile-meta-item">
+                    <div className={styles["profile-meta-item"]}>
                       <EnvironmentOutlined />
                       <span>{formData.department}</span>
                     </div>
@@ -91,12 +91,12 @@ function Profile() {
                   </Button>
                 )}
               </div>
-              <div className="profile-contact">
-                <div className="profile-contact-item">
+              <div className={styles["profile-contact"]}>
+                <div className={styles["profile-contact-item"]}>
                   <MailOutlined />
                   <span>{formData.email}</span>
                 </div>
-                <div className="profile-contact-item">
+                <div className={styles["profile-contact-item"]}>
                   <PhoneOutlined />
                   <span>{formData.phone}</span>
                 </div>
@@ -105,7 +105,7 @@ function Profile() {
           </div>
         </div>
 
-        <div className="profile-main-card">
+        <div className={styles["profile-main-card"]}>
           <Tabs
             activeKey={activeTab}
             onChange={(key) => setActiveTab(key as "basic" | "security")}
@@ -113,20 +113,20 @@ function Profile() {
               {
                 key: "basic",
                 label: (
-                  <span className="profile-tab-label">
+                  <span className={styles["profile-tab-label"]}>
                     <UserOutlined />
                     <span>基本信息</span>
                   </span>
                 ),
                 children: (
-                  <div className="profile-tabs-content">
+                  <div className={styles["profile-tabs-content"]}>
                     <Form
                       form={form}
                       layout="vertical"
                       initialValues={formData}
                       disabled={!isEditing}
                     >
-                      <div className="profile-form-grid">
+                      <div className={styles["profile-form-grid"]}>
                         <Form.Item
                           name="username"
                           label="用户名"
@@ -160,7 +160,7 @@ function Profile() {
                       </div>
                     </Form>
                     {isEditing && (
-                      <div className="profile-form-actions">
+                      <div className={styles["profile-form-actions"]}>
                         <Button
                           type="primary"
                           icon={<SaveOutlined />}
@@ -179,20 +179,20 @@ function Profile() {
               {
                 key: "security",
                 label: (
-                  <span className="profile-tab-label">
+                  <span className={styles["profile-tab-label"]}>
                     <SafetyCertificateOutlined />
                     <span>账号安全 & 绑定</span>
                   </span>
                 ),
                 children: (
-                  <div className="profile-tabs-content">
-                    <div className="profile-section-card">
-                      <div className="section-row">
-                        <div className="section-main">
+                  <div className={styles["profile-tabs-content"]}>
+                    <div className={styles["profile-section-card"]}>
+                      <div className={styles["section-row"]}>
+                        <div className={styles["section-main"]}>
                           <KeyOutlined />
-                          <div className="section-text">
-                            <div className="section-title">登录密码</div>
-                            <div className="section-desc">
+                          <div className={styles["section-text"]}>
+                            <div className={styles["section-title"]}>登录密码</div>
+                            <div className={styles["section-desc"]}>
                               建议定期更换密码以保护账号安全
                             </div>
                           </div>
@@ -201,15 +201,15 @@ function Profile() {
                       </div>
                     </div>
 
-                    <div className="profile-section-card">
-                      <div className="section-row">
-                        <div className="section-main">
-                          <SafetyCertificateOutlined className="icon-success" />
-                          <div className="section-text">
-                            <div className="section-title">
+                    <div className={styles["profile-section-card"]}>
+                      <div className={styles["section-row"]}>
+                        <div className={styles["section-main"]}>
+                          <SafetyCertificateOutlined className={styles["icon-success"]} />
+                          <div className={styles["section-text"]}>
+                            <div className={styles["section-title"]}>
                               两步验证 <Tag color="green">已启用</Tag>
                             </div>
-                            <div className="section-desc">
+                            <div className={styles["section-desc"]}>
                               已绑定手机号 138****8888
                             </div>
                           </div>
@@ -218,19 +218,19 @@ function Profile() {
                       </div>
                     </div>
 
-                    <div className="profile-section-card">
-                      <div className="section-header">
+                    <div className={styles["profile-section-card"]}>
+                      <div className={styles["section-header"]}>
                         <LinkOutlined />
                         <span>第三方账号绑定</span>
                       </div>
-                      <div className="section-body">
-                        <div className="profile-section-card">
-                          <div className="section-row">
-                            <div className="section-main">
-                              <div className="thirdparty-icon wechat">微</div>
-                              <div className="section-text">
-                                <div className="section-title-sm">微信</div>
-                                <div className="section-desc">未绑定</div>
+                      <div className={styles["section-body"]}>
+                        <div className={styles["profile-section-card"]}>
+                          <div className={styles["section-row"]}>
+                            <div className={styles["section-main"]}>
+                              <div className={`${styles["thirdparty-icon"]} ${styles.wechat}`}>微</div>
+                              <div className={styles["section-text"]}>
+                                <div className={styles["section-title-sm"]}>微信</div>
+                                <div className={styles["section-desc"]}>未绑定</div>
                               </div>
                             </div>
                             <Button type="primary" ghost>
@@ -239,16 +239,16 @@ function Profile() {
                           </div>
                         </div>
 
-                        <div className="profile-section-card">
-                          <div className="section-row">
-                            <div className="section-main">
-                              <div className="thirdparty-icon github">G</div>
-                              <div className="section-text">
-                                <div className="section-title-sm">
+                        <div className={styles["profile-section-card"]}>
+                          <div className={styles["section-row"]}>
+                            <div className={styles["section-main"]}>
+                              <div className={`${styles["thirdparty-icon"]} ${styles.github}`}>G</div>
+                              <div className={styles["section-text"]}>
+                                <div className={styles["section-title-sm"]}>
                                   GitHub{" "}
-                                  <CheckCircleOutlined className="icon-success" />
+                                  <CheckCircleOutlined className={styles["icon-success"]} />
                                 </div>
-                                <div className="section-desc">
+                                <div className={styles["section-desc"]}>
                                   已绑定 zhangxiaoming
                                 </div>
                               </div>

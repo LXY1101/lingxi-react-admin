@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { SendOutlined, UserOutlined, RobotOutlined } from '@ant-design/icons';
-import './index.scss';
+import styles from './index.module.scss';
 
 interface Message {
   id: string;
@@ -73,43 +73,43 @@ function ChatWindow() {
   };
 
   return (
-    <div className="chat-window">
-      <div className="chat-header">
-        <div className="chat-header-content">
+    <div className={styles["chat-window"]}>
+      <div className={styles["chat-header"]}>
+        <div className={styles["chat-header-content"]}>
           <div>
-            <h2 className="chat-header-title">你好,</h2>
-            <p className="chat-header-subtitle">我今天能帮你什么？</p>
+            <h2 className={styles["chat-header-title"]}>你好,</h2>
+            <p className={styles["chat-header-subtitle"]}>我今天能帮你什么？</p>
           </div>
         </div>
       </div>
 
-      <div className="chat-messages">
+      <div className={styles["chat-messages"]}>
         {messages.map((message) => (
           <div
             key={message.id}
-            className={`chat-message ${message.role === 'user' ? 'user-message' : 'assistant-message'}`}
+            className={`${styles["chat-message"]} ${message.role === 'user' ? styles["user-message"] : styles["assistant-message"]}`}
           >
-            <div className="message-avatar">
+            <div className={styles["message-avatar"]}>
               {message.role === 'user' ? (
                 <UserOutlined />
               ) : (
                 <RobotOutlined />
               )}
             </div>
-            <div className="message-content">
-              <div className="message-text">{message.content}</div>
-              <div className="message-time">{formatTime(message.timestamp)}</div>
+            <div className={styles["message-content"]}>
+              <div className={styles["message-text"]}>{message.content}</div>
+              <div className={styles["message-time"]}>{formatTime(message.timestamp)}</div>
             </div>
           </div>
         ))}
         {isLoading && (
-          <div className="chat-message assistant-message">
-            <div className="message-avatar">
+          <div className={`${styles["chat-message"]} ${styles["assistant-message"]}`}>
+            <div className={styles["message-avatar"]}>
               <RobotOutlined />
             </div>
-            <div className="message-content">
-              <div className="message-text">
-                <span className="typing-indicator">
+            <div className={styles["message-content"]}>
+              <div className={styles["message-text"]}>
+                <span className={styles["typing-indicator"]}>
                   <span></span>
                   <span></span>
                   <span></span>
@@ -121,11 +121,11 @@ function ChatWindow() {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="chat-input-container">
-        <div className="chat-input-wrapper">
+      <div className={styles["chat-input-container"]}>
+        <div className={styles["chat-input-wrapper"]}>
           <textarea
             ref={inputRef}
-            className="chat-input"
+            className={styles["chat-input"]}
             placeholder="输入消息... (Shift + Enter 换行)"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
@@ -138,7 +138,7 @@ function ChatWindow() {
             }}
           />
           <button
-            className="chat-send-button"
+            className={styles["chat-send-button"]}
             onClick={handleSend}
             disabled={!inputValue.trim() || isLoading}
           >

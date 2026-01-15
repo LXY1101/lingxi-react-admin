@@ -11,14 +11,14 @@
   margin: 0 auto;
 }
 
-.profile-page .profile-header {
+.profile-header {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   margin-bottom: 16px;
 }
 
-.profile-page .profile-back-btn {
+.profile-back-btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -52,14 +52,14 @@
   }
 }
 
-.profile-page .profile-title {
+.profile-title {
   font-size: 24px;
   font-weight: 700;
   color: #111827;
   margin-bottom: 8px;
 }
 
-.profile-page .profile-subtitle {
+.profile-subtitle {
   color: #6b7280;
   font-size: 13px;
   line-height: 24px;
@@ -182,28 +182,28 @@
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
 }
 
-.profile-page .profile-section-card .section-row {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.profile-page .profile-section-card {
+.profile-section-card {
   background: #fff;
   border: 1px solid #f0f0f0;
   border-radius: 12px;
   padding: 16px 20px;
   margin-bottom: 12px;
+  
+  .section-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
-.profile-page .section-main {
+.section-main {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.profile-page .section-header {
+.section-header {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -211,7 +211,7 @@
   font-weight: 600;
 }
 
-.profile-page .section-body {
+.section-body {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -223,20 +223,22 @@
   gap: 8px;
 }
 
-.profile-page .section-text .section-title {
-  font-weight: 600;
+.section-text {
+  .section-title {
+    font-weight: 600;
+  }
+  
+  .section-title-sm {
+    font-weight: 500;
+  }
+  
+  .section-desc {
+    font-size: 12px;
+    color: #666;
+  }
 }
 
-.profile-page .section-text .section-title-sm {
-  font-weight: 500;
-}
-
-.profile-page .section-text .section-desc {
-  font-size: 12px;
-  color: #666;
-}
-
-.profile-page .thirdparty-icon {
+.thirdparty-icon {
   width: 32px;
   height: 32px;
   border-radius: 8px;
@@ -248,14 +250,14 @@
   font-size: 12px;
 }
 
-.profile-page .thirdparty-icon.wechat {
+.thirdparty-icon.wechat {
   background: #52c41a;
 }
 
-.profile-page .thirdparty-icon.github {
+.thirdparty-icon.github {
   background: #000;
 }
 
-.profile-page .icon-success {
+.icon-success {
   color: #52c41a;
 }

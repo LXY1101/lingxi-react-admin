@@ -25,6 +25,7 @@ import {
   PlusOutlined,
   ArrowRightOutlined
 } from "@ant-design/icons";
+import styles from "./index.module.scss";
 import "./index.scss";
 
 const { Sider, Content } = Layout;
@@ -60,22 +61,22 @@ function Setting() {
   ];
 
   return (
-    <Layout className="setting-page">
-      <div className="profile-header">
-        <button onClick={() => navigate(-1)} className="profile-back-btn">
+    <Layout className={styles["setting-page"]}>
+      <div className={styles["profile-header"]}>
+        <button onClick={() => navigate(-1)} className={styles["profile-back-btn"]}>
           <ArrowLeftOutlined className="icon" />
           <span className="text">返回</span>
         </button>
-        <h1 className="profile-title">系统设置</h1>
-        <p className="profile-subtitle">管理系统配置和偏好设置</p>
+        <h1 className={styles["profile-title"]}>系统设置</h1>
+        <p className={styles["profile-subtitle"]}>管理系统配置和偏好设置</p>
       </div>
       <Layout className="setting-container">
-        <Sider width={240} theme="light" className="setting-sider">
-          <div className="setting-nav">
+        <Sider width={240} theme="light" className={styles["setting-sider"]}>
+          <div className={styles["setting-nav"]}>
             {tabs.map((t) => (
               <button
                 key={t.id}
-                className={activeTab === t.id ? "nav-item active" : "nav-item"}
+                className={`${styles["nav-item"]} ${activeTab === t.id ? "active" : ""}`}
                 onClick={() => setActiveTab(t.id)}
               >
                 <span className="nav-icon">{t.icon}</span>
@@ -85,7 +86,7 @@ function Setting() {
             ))}
           </div>
         </Sider>
-        <Content className="setting-content">
+        <Content className={styles["setting-content"]}>
           {activeTab === "general" && (
             <div className="content-sections">
               <Card className="section-card">

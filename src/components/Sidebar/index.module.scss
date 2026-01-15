@@ -11,6 +11,9 @@
   z-index: 20;
 }
 
+.collapsed {}
+.active {}
+
 .sidebar.collapsed {
   width: 80px;
 }
@@ -505,3 +508,4 @@
   color: var(--muted-foreground);
   opacity: 0.8;
 }
+

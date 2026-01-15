@@ -12,15 +12,16 @@ import {
 import {
   ArrowUpOutlined,
   ArrowDownOutlined,
-  CheckCircleOutlined,
-  ClockCircleOutlined,
   UserOutlined,
   TeamOutlined,
   ProjectOutlined,
   BugOutlined,
   DashboardOutlined,
-  LoadingOutlined,
-  BarChartOutlined
+  BarChartOutlined,
+  LineChartOutlined,
+  ThunderboltOutlined,
+  CommentOutlined,
+  TagOutlined
 } from '@ant-design/icons';
 import { useEffect } from 'react';
 import './index.scss';
@@ -184,11 +185,11 @@ function DevelopmentDataDashboard() {
   ];
 
   const teamLoad = [
-    { name: '张伟', load: 12, max: 15, color: '#faad14' },
-    { name: '李娜', load: 8, max: 15, color: '#52c41a' },
-    { name: '王强', load: 14, max: 15, color: '#ff4d4f' },
-    { name: '刘芳', load: 10, max: 15, color: '#52c41a' },
-    { name: '陈明', load: 6, max: 15, color: '#52c41a' }
+    { name: '张伟', load: 12, max: 15, color: '#faad14', avatarColor: '#faad14' },
+    { name: '李娜', load: 8, max: 15, color: '#52c41a', avatarColor: '#1890ff' },
+    { name: '王强', load: 14, max: 15, color: '#ff4d4f', avatarColor: '#ff4d4f' },
+    { name: '刘芳', load: 10, max: 15, color: '#52c41a', avatarColor: '#722ed1' },
+    { name: '陈明', load: 6, max: 15, color: '#52c41a', avatarColor: '#fa8c16' }
   ];
 
   // 获取状态颜色
@@ -259,30 +260,54 @@ function DevelopmentDataDashboard() {
       <Row gutter={[16, 16]} className="main-content">
         {/* 项目健康度 */}
         <Col xs={24} lg={16}>
-          <Card title="项目健康度" variant="outlined" className="health-card">
+          <Card 
+            title={
+              <div className="health-card-header">
+                <div>
+                  <span className="health-main-title">项目健康度</span>
+                  <br/>
+                  <span className="health-sub-title">各项目进度与风险状态</span>
+                </div>
+                <span className="health-action">
+                  查看全部
+                </span>
+              </div>
+            } 
+            variant="outlined" 
+            className="health-card"
+          >
             <div className="health-list">
               {projectHealth.map((project, index) => (
                 <div key={index} className="health-item">
                   <div className="health-header">
                     <div className="project-info">
-                      <span className="project-name">{project.name}</span>
-                      <Tag color={getStatusColor(project.status)}>
-                        {getStatusColor(project.status) === '#52c41a' && <CheckCircleOutlined />}
-                        {getStatusColor(project.status) === '#faad14' && <ClockCircleOutlined />}
-                        {getStatusColor(project.status) === '#ff4d4f' && <LoadingOutlined />}
-                        {project.status}
-                      </Tag>
-                    </div>
+                    <span 
+                      className="status-dot"
+                      style={{ backgroundColor: getStatusColor(project.status) }}
+                    ></span>
+                    <span className="project-name">{project.name}</span>
+                    <Tag 
+                      color={getStatusColor(project.status)} 
+                      className="status-tag"
+                    >
+                      {project.status}
+                    </Tag>
+                  </div>
                     <span className="progress-percent">{project.progress}%</span>
                   </div>
                   <Progress
                     percent={project.progress}
                     strokeColor={getStatusColor(project.status)}
                     size="small"
+                    showInfo={false}
                   />
                   <div className="project-metrics">
-                    <span>{project.commits} 提交</span>
-                    <span>{project.issues} Issues</span>
+                    <span>
+                      <CommentOutlined /> {project.commits} 提交
+                    </span>
+                    <span>
+                      <BugOutlined /> {project.issues} Issues
+                    </span>
                   </div>
                 </div>
               ))}
@@ -292,47 +317,70 @@ function DevelopmentDataDashboard() {
 
         {/* Issues流转 */}
         <Col xs={24} lg={8}>
-          <Card title="Issues流转" variant="outlined" className="issues-card">
+          <Card 
+            title={
+              <div className="issues-card-header">
+                <div>
+                  <span className="issues-main-title">Issues流转</span>
+                  <br/>
+                  <span className="issues-sub-title">当前状态分布</span>
+                </div>
+              </div>
+            } 
+            variant="outlined" 
+            className="issues-card"
+          >
             <div className="issue-flow">
               {issueFlow.map((issue, index) => (
                 <div key={index} className="issue-item">
                   <div className="issue-header">
                     <span className="issue-status">{issue.status}</span>
                     <span className={issue.change > 0 ? 'text-green-500' : 'text-red-500'}>
-                      {issue.change > 0 ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
-                      {Math.abs(issue.change)}
+                      {issue.change > 0 ? '+' : '-'}{Math.abs(issue.change)}
                     </span>
                   </div>
                   <div className="issue-count">{issue.count} 个</div>
                   <Progress
-                    percent={issue.status === '已完成' ? 100 : (issue.count / 200) * 100}
+                    percent={issue.status === '已完成' ? 100 : Math.round((issue.count / 200) * 100)}
                     strokeColor={issue.color}
                     size="small"
+                    showInfo={false}
                   />
                 </div>
               ))}
             </div>
             <div className="completion-rate">
-              <div className="rate-header">
-                <span>完成率</span>
-                <span className="rate-value">69.3%</span>
+              <div className="rate-content">
+                <div className="rate-text">
+                  <div className="rate-label">完成率</div>
+                  <div className="rate-value">69.3%</div>
+                </div>
+                <div className="rate-icon">
+                  <TagOutlined />
+                </div>
               </div>
-              <Progress
-                type="circle"
-                percent={69.3}
-                size={80}
-                strokeColor={{
-                  '0%': '#52c41a',
-                  '100%': '#1677ff',
-                }}
-              />
             </div>
           </Card>
         </Col>
 
         {/* 开发活动 */}
         <Col xs={24} lg={12}>
-          <Card title="开发活动" variant="outlined" className="activity-card">
+          <Card 
+            title={
+              <div className="activity-card-header">
+                <div>
+                  <span className="activity-main-title">开发活动</span>
+                  <br/>
+                  <span className="activity-sub-title">最近的团队动态</span>
+                </div>
+                <span className="activity-icon">
+                  <LineChartOutlined />
+                </span>
+              </div>
+            } 
+            variant="outlined" 
+            className="activity-card"
+          >
             <div className="activity-list">
               {developmentActivities.map((item, index) => (
                 <div key={index} className="activity-item">
@@ -362,27 +410,65 @@ function DevelopmentDataDashboard() {
 
         {/* 团队负载 */}
         <Col xs={24} lg={12}>
-          <Card title="团队负载" variant="outlined" className="team-card">
+          <Card 
+            title={
+              <div className="team-card-header">
+                <div>
+                  <span className="team-main-title">团队负载</span>
+                  <br/>
+                  <span className="team-sub-title">成员任务分配情况</span>
+                </div>
+                <span className="team-icon">
+                  <UserOutlined />
+                </span>
+              </div>
+            } 
+            variant="outlined" 
+            className="team-card"
+          >
             <div className="team-load">
               {teamLoad.map((member, index) => (
                 <div key={index} className="team-member">
                   <div className="member-header">
                     <div className="member-info">
-                      <Avatar icon={<UserOutlined />} style={{ marginRight: 8 }} />
+                      <Avatar 
+                        style={{ 
+                          marginRight: 8, 
+                          backgroundColor: member.avatarColor,
+                          fontSize: '16px'
+                        }} 
+                      >
+                        {member.name.charAt(0)}
+                      </Avatar>
                       <span className="member-name">{member.name}</span>
                     </div>
-                    <span className="load-value">{member.load}/{member.max}</span>
+                    <span className="load-value" style={{ color: member.color }}>
+                      {member.load}/{member.max}
+                    </span>
                   </div>
                   <Progress
-                    percent={(member.load / member.max) * 100}
-                    strokeColor={
-                      member.load > member.max * 0.8 ? '#ff4d4f' : 
-                      member.load > member.max * 0.6 ? '#faad14' : '#52c41a'
-                    }
+                    percent={Math.round((member.load / member.max) * 100)}
+                    strokeColor={member.color}
                     size="small"
+                    strokeLinecap="round"
+                    showInfo={false}
                   />
                 </div>
               ))}
+            </div>
+            <div className="average-response">
+              <div className="response-header">
+                <span>平均响应时间</span>
+              </div>
+              <div className="response-value">
+                <div className="value-container">
+                  <span className="value">2.4</span>
+                  <span className="unit">h</span>
+                </div>
+                <div className="icon-container">
+                  <ThunderboltOutlined style={{ color: '#1677ff', fontSize: '20px' }} />
+                </div>
+              </div>
             </div>
           </Card>
         </Col>

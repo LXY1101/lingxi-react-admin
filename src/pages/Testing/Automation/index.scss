@@ -2,41 +2,6 @@
   padding: 24px;
   background-color: #f0f2f5;
   min-height: 100vh;
-  
-  // 全局覆盖日期选择器样式
-  :global {
-    // 日期选择器范围选择颜色
-    .ant-picker-cell-in-range .ant-picker-cell-inner,
-    .ant-picker-cell-range-middle .ant-picker-cell-inner {
-      background-color: rgba(114, 46, 209, 0.1) !important;
-      color: #722ed1 !important;
-      border-color: #722ed1 !important;
-    }
-    
-    // 日期选择器范围开始和结束
-    .ant-picker-cell-range-start .ant-picker-cell-inner,
-    .ant-picker-cell-range-end .ant-picker-cell-inner {
-      background-color: #722ed1 !important;
-      color: #fff !important;
-      border-color: #722ed1 !important;
-    }
-    
-    // 日期选择器范围悬停
-    .ant-picker-cell-range-hover .ant-picker-cell-inner {
-      background-color: rgba(114, 46, 209, 0.3) !important;
-    }
-    
-    // 日期选择器活动状态
-    .ant-picker-cell-active-with-range .ant-picker-cell-inner {
-      background-color: #722ed1 !important;
-      color: #fff !important;
-    }
-    
-    // 日期选择器悬停状态
-    .ant-picker-cell-hover-with-range .ant-picker-cell-inner {
-      background-color: rgba(114, 46, 209, 0.3) !important;
-    }
-  }
 
   // 页面头部
   .page-header {
@@ -535,4 +500,3 @@
     }
   }
 }
-

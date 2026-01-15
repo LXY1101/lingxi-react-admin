@@ -1,6 +1,6 @@
 import "./index.scss";
 import { useState } from 'react';
-import { Button, Input, Select, Typography, message } from 'antd';
+import { Button, Flex, Input, Select, Space, Typography, message } from 'antd';
 import {
   SafetyOutlined,
   SearchOutlined,
@@ -11,8 +11,10 @@ import {
   CloseOutlined
 } from '@ant-design/icons';
 
+
 const { Title, Text, Paragraph } = Typography;
 const { Option } = Select;
+
 
 // AppPermissions组件 - 应用权限管理
 function AppPermissions() {
@@ -69,10 +71,10 @@ function AppPermissions() {
     <div className="app-permissions-page">
       {/* 顶部通栏 - 应用权限标题 */}
       <div className="page-header">
-        <div className="flex items-center gap-3 mb-1">
-          <SafetyOutlined className="w-8 h-8 text-purple-600" />
-          <Title level={2} className="page-title">应用权限</Title>
-        </div>
+        <Space>
+          <SafetyOutlined  style={{ fontSize: '24px' , color: 'var(--primary)' }} />
+          <Title level={2} className="page-title" style={{ margin: 0, fontSize: '24px' }}>应用权限</Title>
+        </Space>
         <Paragraph className="page-description">
           基于RBAC的应用权限管理，统一管理角色和权限配置
         </Paragraph>
@@ -83,18 +85,19 @@ function AppPermissions() {
         {/* 左侧 - 角色管理模块 */}
         <div className="role-management">
           {/* 头部 */}
-          <div className="role-header">
-            <Title level={4} className="section-title">角色管理</Title>
+          <div className="role-header" style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%' }}>
+            <Title level={4} className="section-title" style={{ margin: 0, fontSize: '16px', fontWeight: '600' }}>角色管理</Title>
 
             {/* 搜索框 */}
-            <div className="search-box">
-              <SearchOutlined className="search-icon" />
+            <div className="search-box" style={{ width: '100%' }}>
               <Input
+                prefix={<SearchOutlined className="search-icon" />}
                 placeholder="搜索角色..."
                 value={roleSearch}
                 onChange={(e) => setRoleSearch(e.target.value)}
-                size="small"
+                size="middle"
                 className="search-input"
+                style={{ borderRadius: '4px' }}
               />
             </div>
 
@@ -102,9 +105,10 @@ function AppPermissions() {
             <Button
               onClick={() => setShowCreateRoleModal(true)}
               type="primary"
-              icon={<PlusOutlined className="w-4 h-4" />}
-              size="small"
+              icon={<PlusOutlined />}
+              size="middle"
               className="create-role-btn"
+              style={{ width: '100%', backgroundColor: '#722ED1', borderColor: '#722ED1' }}
             >
               创建角色
             </Button>
@@ -125,14 +129,14 @@ function AppPermissions() {
                       className={`role-item ${selectedRole === role.id ? 'active' : ''}`}
                     >
                       <div className="role-info">
-                        <div className="flex items-start justify-between mb-1">
+                        <Flex justify="space-between">
                           <Text strong className={`role-name ${selectedRole === role.id ? 'active' : ''}`}>
                             {role.name}
                           </Text>
                           <div className={`member-count ${selectedRole === role.id ? 'active' : ''}`}>
                             {role.memberCount}人
                           </div>
-                        </div>
+                        </Flex>
                         <Text className="role-description">
                           {role.description}
                         </Text>
@@ -155,14 +159,14 @@ function AppPermissions() {
                       className={`role-item ${selectedRole === role.id ? 'active' : ''}`}
                     >
                       <div className="role-info">
-                        <div className="flex items-start justify-between mb-1">
+                        <Flex justify="space-between">
                           <Text strong className={`role-name ${selectedRole === role.id ? 'active' : ''}`}>
                             {role.name}
                           </Text>
                           <div className={`member-count ${selectedRole === role.id ? 'active' : ''}`}>
                             {role.memberCount}人
                           </div>
-                        </div>
+                        </Flex>
                         <Text className="role-description">
                           {role.description}
                         </Text>
@@ -309,14 +313,14 @@ function UsersTab({
   return (
     <div className="users-tab">
       {/* 工具栏 */}
-      <div className="toolbar">
-        <div className="filter-section">
+      <div className="toolbar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+        <div className="filter-section" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           {/* 角色筛选 */}
           <Select
             placeholder="所有角色"
             value={roleFilter}
             onChange={setRoleFilter}
-            size="small"
+            size="middle"
             className="role-select"
             style={{ width: 120 }}
           >
@@ -329,14 +333,15 @@ function UsersTab({
           </Select>
 
           {/* 搜索框 */}
-          <div className="search-container">
-            <SearchOutlined className="search-icon" />
+          <div className="search-container" style={{ width: '300px' }}>
             <Input
+              prefix={<SearchOutlined className="search-icon" />}
               placeholder="搜索用户名或邮箱..."
               value={userSearch}
               onChange={(e) => setUserSearch(e.target.value)}
-              size="small"
+              size="middle"
               className="user-search-input"
+              style={{ borderRadius: '4px' }}
             />
           </div>
         </div>
@@ -345,9 +350,10 @@ function UsersTab({
         <Button
           onClick={onAddMember}
           type="primary"
-          icon={<UserAddOutlined className="w-4 h-4" />}
-          size="small"
+          icon={<UserAddOutlined />}
+          size="middle"
           className="add-member-btn"
+          style={{ backgroundColor: '#722ED1', borderColor: '#722ED1' }}
         >
           添加成员
         </Button>
@@ -498,36 +504,36 @@ function PermissionsTab({
   return (
     <div className="permissions-tab">
       {/* 顶部工具栏 */}
-      <div className="permission-toolbar">
+      <div className="permission-toolbar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
         <div className="section-info">
-          <Title level={5} className="section-title">权限配置</Title>
-          <Text className="section-desc">为角色配置具体的访问权限</Text>
+          <Title level={5} className="section-title" style={{ margin: 0, fontSize: '16px', fontWeight: '600' }}>权限配置</Title>
+          <Text className="section-desc" style={{ fontSize: '14px', color: '#666' }}>为角色配置具体的访问权限</Text>
         </div>
-        <div className="toolbar-actions">
-          <Button size="small" className="action-btn">全部展开</Button>
-          <Button size="small" className="action-btn">全部折叠</Button>
-          <Button type="primary" size="small" onClick={savePermissions} className="save-btn">保存更改</Button>
+        <div className="toolbar-actions" style={{ display: 'flex', gap: '12px' }}>
+          <Button size="middle" className="action-btn" style={{ border: '1px solid #d9d9d9' }} onClick={() => setExpandedGroups(permissionGroups.map(g => g.id))}>全部展开</Button>
+          <Button size="middle" className="action-btn" style={{ border: '1px solid #d9d9d9' }} onClick={() => setExpandedGroups([])}>全部折叠</Button>
+          <Button type="primary" size="middle" onClick={savePermissions} className="save-btn" style={{ backgroundColor: '#722ED1', borderColor: '#722ED1' }}>保存更改</Button>
         </div>
       </div>
 
       {/* 权限统计 */}
-      <div className="permission-stats">
-        <div className="stat-card">
-          <Text strong className="stat-value">{selectedPermissions.length}</Text>
-          <Text className="stat-label">已授权权限</Text>
+      <div className="permission-stats" style={{ display: 'flex', gap: '16px', marginBottom: '24px' }}>
+        <div className="stat-card" style={{ flex: 1, padding: '16px', borderRadius: '8px', backgroundColor: '#f5f0ff' }}>
+          <Text strong className="stat-value" style={{ fontSize: '24px', fontWeight: '600', color: '#722ED1' }}>{selectedPermissions.length}</Text>
+          <Text className="stat-label" style={{ fontSize: '14px', color: '#666' }}>已授权权限</Text>
         </div>
-        <div className="stat-card">
-          <Text strong className="stat-value">{permissionGroups.length}</Text>
-          <Text className="stat-label">权限分组</Text>
+        <div className="stat-card" style={{ flex: 1, padding: '16px', borderRadius: '8px', backgroundColor: '#e6f7ff' }}>
+          <Text strong className="stat-value" style={{ fontSize: '24px', fontWeight: '600', color: '#1890ff' }}>{permissionGroups.length}</Text>
+          <Text className="stat-label" style={{ fontSize: '14px', color: '#666' }}>权限分组</Text>
         </div>
-        <div className="stat-card">
-          <Text strong className="stat-value">{permissionGroups.flatMap(g => g.permissions).length}</Text>
-          <Text className="stat-label">总权限数</Text>
+        <div className="stat-card" style={{ flex: 1, padding: '16px', borderRadius: '8px', backgroundColor: '#f6ffed' }}>
+          <Text strong className="stat-value" style={{ fontSize: '24px', fontWeight: '600', color: '#52c41a' }}>{permissionGroups.flatMap(g => g.permissions).length}</Text>
+          <Text className="stat-label" style={{ fontSize: '14px', color: '#666' }}>总权限数</Text>
         </div>
       </div>
 
-      {/* 权限树 */}
-      <div className="permission-tree">
+      {/* 权限树 - 使用Collapse组件 */}
+      <div style={{ backgroundColor: 'transparent' }}>
         {permissionGroups.map((group) => {
           const groupPermissionIds = group.permissions.map(p => p.id);
           const selectedCount = groupPermissionIds.filter(id => selectedPermissions.includes(id)).length;
@@ -536,52 +542,114 @@ function PermissionsTab({
           const isExpanded = expandedGroups.includes(group.id);
 
           return (
-            <div key={group.id} className="permission-group">
+            <div key={group.id} style={{ marginBottom: '8px' }}>
               {/* 分组标题 */}
-              <div className="group-header" onClick={() => toggleGroup(group.id)}>
-                <div className="group-info">
-                  <RightOutlined className={`expand-icon ${isExpanded ? 'expanded' : ''}`} />
-                  <div className="group-details">
-                    <Text strong className="group-name">{group.name}</Text>
-                    <div className={`permission-count ${allSelected ? 'all-selected' : someSelected ? 'part-selected' : ''}`}>
+              <div 
+                className="group-header" 
+                onClick={() => {
+                  setExpandedGroups(prev =>
+                    prev.includes(group.id)
+                      ? prev.filter(id => id !== group.id)
+                      : [...prev, group.id]
+                  );
+                }}
+                style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  padding: '12px 16px', 
+                  backgroundColor: '#fff',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  border: '1px solid #e5e7eb'
+                }}
+              >
+                <RightOutlined 
+                  style={{ 
+                    marginRight: '8px', 
+                    fontSize: '14px',
+                    transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
+                    transition: 'transform 0.3s',
+                    color: '#999'
+                  }} 
+                />
+                <div className="group-details" style={{ flex: 1, flexDirection: 'column', alignItems: 'flex-start' }}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <Text strong className="group-name" style={{ fontSize: '14px', fontWeight: '600' }}>{group.name}</Text>
+                    <div className={`permission-count ${allSelected ? 'all-selected' : someSelected ? 'part-selected' : ''}`} style={{ fontSize: '12px', color: '#722ED1', marginLeft: '8px', display: 'inline-block' }}>
                       {selectedCount}/{groupPermissionIds.length}
                     </div>
                   </div>
+                  <Text className="group-description" style={{ fontSize: '12px', color: '#999', marginTop: '4px' }}>{group.description}</Text>
                 </div>
-                <div className="group-description">{group.description}</div>
                 <div
                   className={`group-checkbox ${allSelected ? 'checked' : someSelected ? 'indeterminate' : ''}`}
                   onClick={(e) => {
                     e.stopPropagation();
                     toggleAllInGroup(group);
                   }}
+                  style={{ 
+                    width: '16px', 
+                    height: '16px', 
+                    border: '1px solid #d9d9d9',
+                    borderRadius: '4px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    backgroundColor: allSelected ? '#722ED1' : 'transparent'
+                  }}
                 >
-                  {allSelected && <CheckCircleOutlined className="check-icon" />}
+                  {allSelected && <CheckCircleOutlined className="check-icon" style={{ color: '#fff', fontSize: '14px' }} />}
                 </div>
               </div>
 
               {/* 权限列表 */}
               {isExpanded && (
-                <div className="permission-list">
-                  {group.permissions.map((permission) => {
-                    const isSelected = selectedPermissions.includes(permission.id);
+                <div className="permission-list" style={{ padding: '16px', backgroundColor: '#fff', border: '1px solid #f0f0f0', borderTop: 'none', borderRadius: '0 0 8px 8px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(48%, 1fr))', gap: '12px' }}>
+                    {group.permissions.map((permission) => {
+                      const isSelected = selectedPermissions.includes(permission.id);
 
-                    return (
-                      <div
-                        key={permission.id}
-                        className={`permission-item ${isSelected ? 'selected' : ''}`}
-                        onClick={() => togglePermission(permission.id)}
-                      >
-                        <div className={`permission-checkbox ${isSelected ? 'checked' : ''}`}>
-                          {isSelected && <CheckCircleOutlined className="check-icon" />}
+                      return (
+                        <div
+                          key={permission.id}
+                          className={`permission-item ${isSelected ? 'selected' : ''}`}
+                          onClick={() => togglePermission(permission.id)}
+                          style={{ 
+                            padding: '12px', 
+                            border: `1px solid ${isSelected ? '#722ED1' : '#f0f0f0'}`,
+                            borderRadius: '6px',
+                            backgroundColor: isSelected ? '#f5f0ff' : '#fff',
+                            cursor: 'pointer',
+                            transition: 'all 0.3s',
+                            display: 'flex',
+                            alignItems: 'center'
+                          }}
+                        >
+                          <div 
+                            className={`permission-checkbox ${isSelected ? 'checked' : ''}`}
+                            style={{ 
+                              width: '16px', 
+                              height: '16px', 
+                              border: `1px solid ${isSelected ? '#722ED1' : '#d9d9d9'}`,
+                              borderRadius: '4px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              marginRight: '12px',
+                              backgroundColor: isSelected ? '#722ED1' : 'transparent'
+                            }}
+                          >
+                            {isSelected && <CheckCircleOutlined className="check-icon" style={{ color: '#fff', fontSize: '14px' }} />}
+                          </div>
+                          <div className="permission-info" style={{ flex: 1 }}>
+                            <Text className="permission-name" style={{ fontSize: '14px', fontWeight: '500', marginBottom: '2px', display: 'block' }}>{permission.name}</Text>
+                            <Text className="permission-desc" style={{ fontSize: '12px', color: '#999' }}>{permission.description}</Text>
+                          </div>
                         </div>
-                        <div className="permission-info">
-                          <Text className="permission-name">{permission.name}</Text>
-                          <Text className="permission-desc">{permission.description}</Text>
-                        </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
               )}
             </div>
@@ -757,8 +825,8 @@ function AddMemberModal({ roleId, onClose }: { roleId: string; onClose: () => vo
         </div>
 
         <div className="modal-search">
-          <SearchOutlined className="search-icon" />
           <Input
+            prefix={<SearchOutlined className="search-icon" />}
             placeholder="搜索用户名或邮箱..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}

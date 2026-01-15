@@ -7,11 +7,14 @@
 
 /* 页面头部 */
 .page-header {
-  margin-bottom: 24px;
-  padding: 24px;
+  margin-bottom: 12px;
+  padding: 12px;
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  .page-description {
+    margin-top: 10px;
+  }
 }
 
 .section-title {
@@ -50,17 +53,12 @@
 }
 
 .search-icon {
-  position: absolute;
-  left: 8px;
-  top: 50%;
-  transform: translateY(-50%);
   color: #9ca3af;
   width: 16px;
   height: 16px;
 }
 
 .search-input {
-  padding-left: 32px !important;
   border-radius: 6px !important;
 }
 
@@ -219,7 +217,6 @@
 }
 
 .user-search-input {
-  padding-left: 32px !important;
   border-radius: 6px !important;
 }
 
@@ -414,6 +411,7 @@
 }
 
 .stat-value {
+  display: block;
   font-size: 24px;
   font-weight: 700;
   color: #1f2937;
@@ -663,8 +661,7 @@
 }
 
 .modal-icon {
-  width: 24px;
-  height: 24px;
+  font-size: 24px;
   color: var(--primary);
 }
 

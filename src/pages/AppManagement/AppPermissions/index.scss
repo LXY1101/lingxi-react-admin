@@ -1,0 +1,829 @@
+/* AppPermissions组件样式 */
+.app-permissions-page {
+  padding: 20px;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* 页面头部 */
+.page-header {
+  margin-bottom: 24px;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  margin-bottom: 16px !important;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+/* 主内容区 - 左右分栏 */
+.main-content {
+  display: flex;
+  gap: 16px;
+  height: calc(100vh - 200px);
+}
+
+/* 左侧角色管理 */
+.role-management {
+  width: 320px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 角色管理头部 */
+.role-header {
+  padding: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.search-box {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  width: 16px;
+  height: 16px;
+}
+
+.search-input {
+  padding-left: 32px !important;
+  border-radius: 6px !important;
+}
+
+.create-role-btn {
+  width: 100%;
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+/* 角色列表 */
+.role-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.role-group {
+  margin-bottom: 24px;
+}
+
+.group-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+  margin-bottom: 8px;
+  padding-left: 8px;
+}
+
+.role-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.role-item {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.role-item:hover {
+  border-color: var(--primary);
+  background-color: rgba(139, 92, 246, 0.05);
+}
+
+.role-item.active {
+  border-color: var(--primary);
+  background-color: rgba(139, 92, 246, 0.1);
+}
+
+.role-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.role-name.active {
+  color: var(--primary);
+}
+
+.member-count {
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background-color: #f3f4f6;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.member-count.active {
+  background-color: rgba(139, 92, 246, 0.2);
+  color: var(--primary);
+}
+
+.role-description {
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+/* 右侧权限内容区 */
+.permission-content {
+  flex: 1;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Tab切换栏 */
+.tab-bar {
+  display: flex;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tab-btn {
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  border-radius: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.tab-btn:hover {
+  color: var(--primary);
+}
+
+.tab-btn.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+/* Tab内容区 */
+.tab-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+/* 用户管理Tab */
+.users-tab {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.filter-section {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.role-select {
+  border-radius: 6px;
+}
+
+.search-container {
+  position: relative;
+  width: 300px;
+}
+
+.user-search-input {
+  padding-left: 32px !important;
+  border-radius: 6px !important;
+}
+
+.add-member-btn {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+/* 用户列表 */
+.user-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  gap: 12px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.user-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+  margin-bottom: 2px;
+}
+
+.user-email {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.user-role {
+  margin-right: 16px;
+}
+
+.role-tag {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.role-admin {
+  background-color: rgba(139, 92, 246, 0.1);
+  color: var(--primary);
+}
+
+.role-developer {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.role-operator {
+  background-color: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+}
+
+.role-member {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+.role-readonly {
+  background-color: rgba(148, 163, 184, 0.1);
+  color: #94a3b8;
+}
+
+.user-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: #6b7280;
+  gap: 8px;
+}
+
+.empty-icon {
+  width: 40px;
+  height: 40px;
+  color: #d1d5db;
+  margin-bottom: 8px;
+}
+
+.empty-desc {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* 统计信息 */
+.stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  font-size: 12px !important;
+  color: var(--primary) !important;
+  padding: 4px 8px !important;
+}
+
+/* 权限配置Tab */
+.permissions-tab {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.permission-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.section-desc {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.save-btn {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+/* 权限统计 */
+.permission-stats {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  flex: 1;
+  padding: 16px;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 4px !important;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* 权限树 */
+.permission-tree {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.permission-group {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.group-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #f9fafb;
+  cursor: pointer;
+  gap: 8px;
+}
+
+.expand-icon {
+  width: 16px;
+  height: 16px;
+  color: #6b7280;
+  transition: transform 0.2s ease;
+}
+
+.expand-icon.expanded {
+  transform: rotate(90deg);
+}
+
+.group-details {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.group-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.permission-count {
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background-color: #e5e7eb;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.permission-count.all-selected {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+}
+
+.permission-count.part-selected {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.group-description {
+  font-size: 12px;
+  color: #6b7280;
+  flex: 1;
+}
+
+.group-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.group-checkbox.checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.group-checkbox.indeterminate {
+  background-color: rgba(139, 92, 246, 0.2);
+  border-color: var(--primary);
+  position: relative;
+}
+
+.group-checkbox.indeterminate::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  background-color: var(--primary);
+}
+
+.check-icon {
+  width: 14px;
+  height: 14px;
+  color: #ffffff;
+}
+
+/* 权限列表 */
+.permission-list {
+  padding: 8px 0;
+  background-color: #ffffff;
+}
+
+.permission-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 8px 16px 8px 40px;
+  gap: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.permission-item:hover {
+  background-color: rgba(139, 92, 246, 0.05);
+}
+
+.permission-item.selected {
+  background-color: rgba(139, 92, 246, 0.1);
+}
+
+.permission-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3px;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.permission-checkbox.checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.permission-info {
+  flex: 1;
+}
+
+.permission-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.permission-desc {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* 底部操作栏 */
+.bottom-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.selected-count {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.selected-count strong {
+  color: var(--primary);
+}
+
+.reset-btn {
+  color: #6b7280 !important;
+}
+
+.save-config-btn {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+/* 弹窗 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--primary);
+}
+
+.title-text {
+  margin: 0 !important;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.close-btn {
+  padding: 4px;
+  color: #6b7280;
+}
+
+.modal-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.modal-search {
+  position: relative;
+  padding: 16px 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-content .form-item {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.form-label .required {
+  color: #ef4444;
+}
+
+.form-input, .form-textarea {
+  border-radius: 6px !important;
+}
+
+.template-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.template-btn {
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.template-btn:hover {
+  border-color: var(--primary);
+  background-color: rgba(139, 92, 246, 0.05);
+}
+
+.template-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.template-desc {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+}
+
+.cancel-btn {
+  color: #6b7280 !important;
+  border-color: #d1d5db !important;
+}
+
+.confirm-btn {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+/* 可用用户列表 */
+.available-users {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.available-user {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.available-user.selected {
+  background-color: rgba(139, 92, 246, 0.1);
+  border-color: var(--primary);
+}
+
+.user-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-checkbox.checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.user-department {
+  font-size: 12px;
+  color: #6b7280;
+  background-color: #e5e7eb;
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-left: auto;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  .main-content {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .role-management {
+    width: 100%;
+    height: 300px;
+  }
+
+  .permission-content {
+    height: 600px;
+  }
+}

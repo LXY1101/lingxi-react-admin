@@ -3,13 +3,13 @@ import Sidebar from '../../components/Sidebar';
 import AdminPanel from '../../components/AdminPanel';
 import ChatWindow from '../../components/ChatWindow';
 import ResizableLayout from '../../components/ResizableLayout';
-import './index.scss';
+import styles from './index.module.scss';
 
 function HomePage() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (
-    <div className="home-page-layout">
+    <div className={styles["home-page-layout"]}>
       <Sidebar 
         collapsed={sidebarCollapsed} 
         onCollapse={setSidebarCollapsed} 

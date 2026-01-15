@@ -6,27 +6,26 @@ import {
   Button,
   Dropdown,
   Space,
-  Typography,
-  Flex
+  Typography
 } from 'antd';
 import {
-  MoreVertical,
-  Settings,
-  FileText,
-  Layers,
-  Calendar,
-  User,
-  Tag,
-  CheckCircle2,
-  XCircle,
-  ChevronUp,
-  AlertTriangle,
-  Clock,
-  ChevronDown,
-  Smartphone,
-  Monitor,
-  Package
-} from 'lucide-react';
+  MoreOutlined,
+  SettingOutlined,
+  FileTextOutlined,
+  ApartmentOutlined,
+  CalendarOutlined,
+  UserOutlined,
+  TagOutlined,
+  CheckCircleOutlined,
+  CloseCircleOutlined,
+  UpOutlined,
+  ExclamationCircleOutlined,
+  ClockCircleOutlined,
+  DownOutlined,
+  MobileOutlined,
+  MonitorOutlined,
+  InboxOutlined
+} from '@ant-design/icons';
 
 const { Title, Text, Paragraph } = Typography;
 
@@ -161,28 +160,28 @@ export function AppsList({ onNavigateToSettings }: AppListProps) {
           bgColor: 'bg-green-50',
           textColor: 'text-green-700',
           borderColor: 'border-green-200',
-          icon: CheckCircle2
+          icon: CheckCircleOutlined
         };
       case 'stopped':
         return {
           bgColor: 'bg-gray-50',
           textColor: 'text-gray-600',
           borderColor: 'border-gray-200',
-          icon: XCircle
+          icon: CloseCircleOutlined
         };
       case 'error':
         return {
           bgColor: 'bg-red-50',
           textColor: 'text-red-700',
           borderColor: 'border-red-200',
-          icon: AlertTriangle
+          icon: ExclamationCircleOutlined
         };
       case 'deploying':
         return {
           bgColor: 'bg-yellow-50',
           textColor: 'text-yellow-700',
           borderColor: 'border-yellow-200',
-          icon: Clock
+          icon: ClockCircleOutlined
         };
     }
   };
@@ -193,22 +192,22 @@ export function AppsList({ onNavigateToSettings }: AppListProps) {
       case '前端':
         return {
           bgColor: 'bg-gradient-to-br from-purple-500 to-indigo-600',
-          icon: Monitor
+          icon: MonitorOutlined
         };
       case '后台':
         return {
           bgColor: 'bg-gradient-to-br from-blue-500 to-cyan-600',
-          icon: Layers
+          icon: ApartmentOutlined
         };
       case '移动端':
         return {
           bgColor: 'bg-gradient-to-br from-green-500 to-emerald-600',
-          icon: Smartphone
+          icon: MobileOutlined
         };
       case 'API':
         return {
           bgColor: 'bg-gradient-to-br from-orange-500 to-red-500',
-          icon: Package
+          icon: InboxOutlined
         };
     }
   };
@@ -253,7 +252,7 @@ export function AppsList({ onNavigateToSettings }: AppListProps) {
         label: (
           <Button
             type="text"
-            icon={<Settings className="w-4 h-4 mr-2" />}
+            icon={<SettingOutlined className="w-4 h-4 mr-2" />}
             onClick={() => onNavigateToSettings?.(appId)}
           >
             应用设置
@@ -266,7 +265,7 @@ export function AppsList({ onNavigateToSettings }: AppListProps) {
           <Button
             type="text"
             danger
-            icon={<FileText className="w-4 h-4 mr-2" />}
+            icon={<FileTextOutlined className="w-4 h-4 mr-2" />}
           >
             应用详情
           </Button>
@@ -283,7 +282,7 @@ export function AppsList({ onNavigateToSettings }: AppListProps) {
             <Title level={2} className="page-title">应用状态</Title>
             <Paragraph className="page-description">
               <Space>
-                <Package className="w-4 h-4" />
+                <InboxOutlined className="w-4 h-4" />
                 管理和监控所有应用的运行状态
               </Space>
             </Paragraph>
@@ -335,12 +334,12 @@ export function AppsList({ onNavigateToSettings }: AppListProps) {
               className="filter-dropdown"
             >
               <Space align="center" className="filter-dropdown-content">
-                <Tag className="w-3 h-3 text-gray-600" />
+                <TagOutlined className="w-3 h-3 text-gray-600" />
                 <Text style={{color: '#6b7280'}}>应用测试：</Text><Text>{filterType}</Text>
                 {dropdownOpen ? (
-                  <ChevronUp className="w-3 h-3 text-gray-400" />
+                  <UpOutlined className="w-3 h-3 text-gray-400" />
                 ) : (
-                  <ChevronDown className="w-3 h-3 text-gray-400" />
+                  <DownOutlined className="w-3 h-3 text-gray-400" />
                 )}
               </Space>
             </Button>
@@ -366,7 +365,7 @@ export function AppsList({ onNavigateToSettings }: AppListProps) {
                     <span>{app.type}</span>
                   </div>
                   <Dropdown menu={operationMenu(app.id)} trigger={['click']}>
-                    <MoreVertical className="w-5 h-5 text-gray-400 cursor-pointer" />
+                    <MoreOutlined className="w-5 h-5 text-gray-400 cursor-pointer" />
                   </Dropdown>
                 </div>
 
@@ -379,21 +378,21 @@ export function AppsList({ onNavigateToSettings }: AppListProps) {
                 {/* 底部信息栏 */}
                 <div className="app-card-footer">
                   <div className="app-meta">
-                    <Space size="small">
-                      <Space size="small" align="center">
-                        <Tag className="w-3 h-3" />
-                        <Text type="secondary" style={{ fontSize: '12px' }}>{app.version}</Text>
-                      </Space>
-                      <Space size="small" align="center">
-                        <User className="w-3 h-3" />
-                        <Text type="secondary" style={{ fontSize: '12px' }}>{app.owner}</Text>
-                      </Space>
-                      <Space size="small" align="center">
-                        <Calendar className="w-3 h-3" />
-                        <Text type="secondary" style={{ fontSize: '12px' }}>{app.lastUpdated}</Text>
-                      </Space>
+                  <Space size="small">
+                    <Space size="small" align="center">
+                      <TagOutlined className="w-3 h-3" />
+                      <Text type="secondary" style={{ fontSize: '12px' }}>{app.version}</Text>
                     </Space>
-                  </div>
+                    <Space size="small" align="center">
+                      <UserOutlined className="w-3 h-3" />
+                      <Text type="secondary" style={{ fontSize: '12px' }}>{app.owner}</Text>
+                    </Space>
+                    <Space size="small" align="center">
+                      <CalendarOutlined className="w-3 h-3" />
+                      <Text type="secondary" style={{ fontSize: '12px' }}>{app.lastUpdated}</Text>
+                    </Space>
+                  </Space>
+                </div>
                   <div className={`app-status ${app.status}`}>
                     <StatusIcon className="w-3 h-3" />
                     {app.statusText}
@@ -409,7 +408,7 @@ export function AppsList({ onNavigateToSettings }: AppListProps) {
       {filteredApps.length === 0 && (
         <div style={{ textAlign: 'center', padding: '60px 20px' }}>
           <div style={{ width: '80px', height: '80px', borderRadius: '50%', backgroundColor: '#f3f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
-            <Package className="w-12 h-12 text-gray-400" />
+            <InboxOutlined className="w-12 h-12 text-gray-400" />
           </div>
           <Title level={4} style={{ marginBottom: '8px' }}>暂无应用</Title>
           <Text type="secondary">当前筛选条件下没有找到应用</Text>

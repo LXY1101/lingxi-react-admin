@@ -11,6 +11,9 @@
   z-index: 20;
 }
 
+.collapsed {}
+.active {}
+
 .sidebar.collapsed {
   width: 80px;
 }
@@ -37,7 +40,6 @@
 }
 
 .sidebar-avatar-container:hover .avatar-gradient {
-  transform: scale(1.05);
   transition: transform 0.2s ease;
 }
 
@@ -79,7 +81,6 @@
 }
 
 .sidebar-avatar-container:active {
-  transform: scale(0.95);
   transition: transform 0.1s ease;
 }
 
@@ -107,18 +108,11 @@
   cursor: pointer;
   border-radius: 8px;
   transition: all 0.3s ease;
-  transform: scale(0.9);
 }
 
 /* 非激活状态 hover 效果 */
 .sidebar-module-icon:not(.active):hover {
   background-color: #f9fafb;
-  transform: scale(1);
-}
-
-/* 激活状态样式 */
-.sidebar-module-icon.active {
-  transform: scale(1);
 }
 
 /* 激活状态的渐变背景 */
@@ -505,3 +499,4 @@
   color: var(--muted-foreground);
   opacity: 0.8;
 }
+

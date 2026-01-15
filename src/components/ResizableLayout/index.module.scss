@@ -29,16 +29,16 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
-}
 
-.resizable-layout-divider:hover {
-  background-color: #e5e7eb;
-  width: 6px;
-}
+  &:hover {
+    background-color: #e5e7eb;
+    width: 6px;
+  }
 
-.resizable-layout-divider.dragging {
-  background-color: #8b5cf6;
-  width: 6px;
+  &.dragging {
+    background-color: #8b5cf6;
+    width: 6px;
+  }
 }
 
 .divider-handle {

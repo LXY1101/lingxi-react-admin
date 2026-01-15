@@ -15,7 +15,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .profile-back-btn {
@@ -53,7 +53,7 @@
 }
 
 .profile-title {
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 700;
   color: #111827;
   margin-bottom: 8px;
@@ -61,7 +61,7 @@
 
 .profile-subtitle {
   color: #6b7280;
-  font-size: 16px;
+  font-size: 13px;
   line-height: 24px;
 }
 
@@ -182,19 +182,19 @@
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
 }
 
-.profile-section-card .section-row {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .profile-section-card {
   background: #fff;
   border: 1px solid #f0f0f0;
   border-radius: 12px;
   padding: 16px 20px;
   margin-bottom: 12px;
+  
+  .section-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .section-main {
@@ -223,17 +223,19 @@
   gap: 8px;
 }
 
-.section-text .section-title {
-  font-weight: 600;
-}
-
-.section-text .section-title-sm {
-  font-weight: 500;
-}
-
-.section-text .section-desc {
-  font-size: 12px;
-  color: #666;
+.section-text {
+  .section-title {
+    font-weight: 600;
+  }
+  
+  .section-title-sm {
+    font-weight: 500;
+  }
+  
+  .section-desc {
+    font-size: 12px;
+    color: #666;
+  }
 }
 
 .thirdparty-icon {

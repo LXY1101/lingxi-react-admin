@@ -14,7 +14,7 @@ import {
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-import "./index.scss";
+import styles from "./index.module.scss";
 
 const { Search } = Input;
 
@@ -194,15 +194,15 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
   const activeMenuItems = activeModule.menuItems || [];
 
   return (
-    <div className={`sidebar ${collapsed ? "collapsed" : ""}`}>
+    <div className={`${styles.sidebar} ${collapsed ? styles.collapsed : ""}`}>
       {/* 左侧图标栏 */}
-      <div className="sidebar-left-rail">
+      <div className={styles["sidebar-left-rail"]}>
         {/* 用户头像 */}
-        <div className="sidebar-avatar-container">
-          <div className="sidebar-avatar-gradient">
-            <div className="sidebar-avatar-inner">
+        <div className={styles["sidebar-avatar-container"]}>
+          <div className={styles["sidebar-avatar-gradient"]}>
+            <div className={styles["sidebar-avatar-inner"]}>
               <Avatar
-                className="sidebar-avatar-image"
+                className={styles["sidebar-avatar-image"]}
                 style={{
                   background:
                     "linear-gradient(135deg, #f97316 0%, #ec4899 100%)",
@@ -212,11 +212,11 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
               />
             </div>
           </div>
-          <div className="sidebar-online-status"></div>
+          <div className={styles["sidebar-online-status"]}></div>
         </div>
 
         {/* 模块图标 */}
-        <div className="sidebar-module-icons">
+        <div className={styles["sidebar-module-icons"]}>
           {modules.map((module) => {
             const Icon = module.icon;
             const isActive = isModuleRoute && activeModule.key === module.key;
@@ -227,49 +227,52 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
                   handleMenuClick(module.key);
                   if (collapsed) onCollapse?.(false);
                 }}
-                className={`sidebar-module-icon ${isActive ? "active" : ""}`}
+                className={`${styles["sidebar-module-icon"]} ${isActive ? styles.active : ""}`}
               >
-                {isActive && <div className="module-icon-bg"></div>}
-                <Icon className="module-icon" />
+                {isActive && <div className={styles["module-icon-bg"]}></div>}
+                <Icon className={styles["module-icon"]} />
               </button>
             );
           })}
 
-          <div className="sidebar-divider"></div>
+          <div className={styles["sidebar-divider"]}></div>
 
-          <button className="sidebar-module-icon">
-            <BellOutlined className="module-icon" />
-            <span className="sidebar-notification-dot"></span>
+          <button className={styles["sidebar-module-icon"]}>
+            <BellOutlined className={styles["module-icon"]} />
+            <span className={styles["sidebar-notification-dot"]}></span>
           </button>
         </div>
 
         {/* 底部操作 */}
-        <div className="sidebar-bottom-actions">
-          <button className="sidebar-module-icon">
-            <SettingOutlined className="module-icon" />
+        <div className={styles["sidebar-bottom-actions"]}>
+          <button
+            className={styles["sidebar-module-icon"]}
+            onClick={() => navigate("/admin/setting")}
+          >
+            <SettingOutlined className={styles["module-icon"]} />
           </button>
           <button
-            className="sidebar-module-icon"
+            className={styles["sidebar-module-icon"]}
             onClick={() => {
               logout();
               navigate("/login", { replace: true });
             }}
           >
-            <LogoutOutlined className="module-icon" />
+            <LogoutOutlined className={styles["module-icon"]} />
           </button>
         </div>
       </div>
 
       {/* 可展开面板 */}
-      <div className="sidebar-expanded-panel">
+      <div className={styles["sidebar-expanded-panel"]}>
         {/* 面板头部 */}
-        <div className="sidebar-panel-header">
+        <div className={styles["sidebar-panel-header"]}>
           <div>
-            <h2 className="sidebar-panel-title">{activeModule.name}</h2>
-            <p className="sidebar-panel-subtitle">{activeModule.label}</p>
+            <h2 className={styles["sidebar-panel-title"]}>{activeModule.name}</h2>
+            <p className={styles["sidebar-panel-subtitle"]}>{activeModule.label}</p>
           </div>
           <button
-            className="sidebar-collapse-btn"
+            className={styles["sidebar-collapse-btn"]}
             onClick={() => onCollapse?.(!collapsed)}
           >
             <MenuFoldOutlined />
@@ -277,32 +280,32 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
         </div>
 
         {/* 面板内容 */}
-        <div className="sidebar-panel-content">
+        <div className={styles["sidebar-panel-content"]}>
           {/* 搜索框 */}
-          <div className="sidebar-search">
+          <div className={styles["sidebar-search"]}>
             <Search placeholder="Search..." />
           </div>
 
           {/* ACTIVE 部分 */}
           {activeMenuItems.length > 0 && (
-            <div className="sidebar-section">
-              <div className="sidebar-section-header">
-                <span className="sidebar-section-title">ACTIVE</span>
-                <a href="#" className="sidebar-section-link">
+            <div className={styles["sidebar-section"]}>
+              <div className={styles["sidebar-section-header"]}>
+                <span className={styles["sidebar-section-title"]}>ACTIVE</span>
+                <a href="#" className={styles["sidebar-section-link"]}>
                   View All
                 </a>
               </div>
-              <div className="sidebar-menu">
+              <div className={styles["sidebar-menu"]}>
                 {activeMenuItems.map((item) => (
                   <div
                     key={item.key}
-                    className={`sidebar-menu-item ${
-                      activeSubKey === item.key ? "active" : ""
+                    className={`${styles["sidebar-menu-item"]} ${
+                      activeSubKey === item.key ? styles.active : ""
                     }`}
                     onClick={() => navigate(item.path)}
                   >
-                    <div className={`menu-item-dot ${item.dotClass}`}></div>
-                    <span className="menu-item-text">{item.label}</span>
+                    <div className={`${styles["menu-item-dot"]} ${styles[item.dotClass]}`}></div>
+                    <span className={styles["menu-item-text"]}>{item.label}</span>
                     {typeof item.badge === "number" && item.badge > 0 && (
                       <Badge count={item.badge} size="small" />
                     )}
@@ -313,21 +316,21 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
           )}
 
           {/* RECENT FILES 部分 */}
-          <div className="sidebar-section">
-            <div className="sidebar-section-header">
-              <span className="sidebar-section-title">RECENT FILES</span>
+          <div className={styles["sidebar-section"]}>
+            <div className={styles["sidebar-section-header"]}>
+              <span className={styles["sidebar-section-title"]}>RECENT FILES</span>
             </div>
-            <div className="sidebar-recent-files">
+            <div className={styles["sidebar-recent-files"]}>
               {recentFiles.map((file) => (
-                <div key={file.id} className="recent-file-item">
-                  <div className="recent-file-icon-wrapper">
-                    <FileTextOutlined className="recent-file-icon" />
+                <div key={file.id} className={styles["recent-file-item"]}>
+                  <div className={styles["recent-file-icon-wrapper"]}>
+                    <FileTextOutlined className={styles["recent-file-icon"]} />
                   </div>
-                  <div className="recent-file-info">
-                    <div className="recent-file-name">{file.name}</div>
-                    <div className="recent-file-time">Edited {file.time}</div>
+                  <div className={styles["recent-file-info"]}>
+                    <div className={styles["recent-file-name"]}>{file.name}</div>
+                    <div className={styles["recent-file-time"]}>Edited {file.time}</div>
                   </div>
-                  <MoreOutlined className="recent-file-more" />
+                  <MoreOutlined className={styles["recent-file-more"]} />
                 </div>
               ))}
             </div>
@@ -335,14 +338,14 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
         </div>
 
         {/* 面板底部 */}
-        <div className="sidebar-panel-footer">
-          <div className="sidebar-help-card">
-            <div className="help-card-icon">
+        <div className={styles["sidebar-panel-footer"]}>
+          <div className={styles["sidebar-help-card"]}>
+            <div className={styles["help-card-icon"]}>
               <UserOutlined />
             </div>
-            <div className="help-card-content">
-              <div className="help-card-title">Need Help?</div>
-              <div className="help-card-desc">Check our docs</div>
+            <div className={styles["help-card-content"]}>
+              <div className={styles["help-card-title"]}>Need Help?</div>
+              <div className={styles["help-card-desc"]}>Check our docs</div>
             </div>
           </div>
         </div>

@@ -335,8 +335,6 @@ function AppsDataBoard() {
                 onChange={setAppTrack}
                 style={{ width: 150 }}
                 className="custom-select"
-                dropdownClassName="custom-select-dropdown"
-
               >
                 {appTrackOptions.map((option) => (
                   <Option key={option} value={option}>
@@ -360,7 +358,7 @@ function AppsDataBoard() {
                   <Statistic
                     value={stat.value}
                     prefix={stat.icon}
-                    valueStyle={{ color: stat.color }}
+                    styles={{ content: { color: stat.color } }}
                     suffix={
                       <Space>
                         {stat.trend === 'up' ? (

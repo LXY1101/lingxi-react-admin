@@ -1,17 +1,15 @@
 import "./index.scss";
 import { useState } from 'react';
-import { Button, Input, Select, Space, Typography, message } from 'antd';
+import { Button, Input, Select, Typography, message } from 'antd';
 import {
-  Shield,
-  Search,
-  UserPlus,
-  Filter,
-  ChevronDown,
-  ChevronRight,
-  CheckCircle2,
-  Plus,
-  X
-} from 'lucide-react';
+  SafetyOutlined,
+  SearchOutlined,
+  UserAddOutlined,
+  RightOutlined,
+  CheckCircleOutlined,
+  PlusOutlined,
+  CloseOutlined
+} from '@ant-design/icons';
 
 const { Title, Text, Paragraph } = Typography;
 const { Option } = Select;
@@ -72,7 +70,7 @@ function AppPermissions() {
       {/* 顶部通栏 - 应用权限标题 */}
       <div className="page-header">
         <div className="flex items-center gap-3 mb-1">
-          <Shield className="w-8 h-8 text-purple-600" />
+          <SafetyOutlined className="w-8 h-8 text-purple-600" />
           <Title level={2} className="page-title">应用权限</Title>
         </div>
         <Paragraph className="page-description">
@@ -90,7 +88,7 @@ function AppPermissions() {
 
             {/* 搜索框 */}
             <div className="search-box">
-              <Search className="search-icon" />
+              <SearchOutlined className="search-icon" />
               <Input
                 placeholder="搜索角色..."
                 value={roleSearch}
@@ -104,7 +102,7 @@ function AppPermissions() {
             <Button
               onClick={() => setShowCreateRoleModal(true)}
               type="primary"
-              icon={<Plus className="w-4 h-4" />}
+              icon={<PlusOutlined className="w-4 h-4" />}
               size="small"
               className="create-role-btn"
             >
@@ -228,7 +226,6 @@ function AppPermissions() {
 
 // UsersTab组件 - 用户管理Tab
 function UsersTab({
-  selectedRole,
   onAddMember,
 }: {
   selectedRole: string;
@@ -302,7 +299,7 @@ function UsersTab({
   ];
 
   const filteredUsers = users.filter((user) => {
-    const matchesSearch = 
+    const matchesSearch =
       user.name.toLowerCase().includes(userSearch.toLowerCase()) ||
       user.email.toLowerCase().includes(userSearch.toLowerCase());
     const matchesRole = roleFilter === "all" || user.roleId === roleFilter;
@@ -333,7 +330,7 @@ function UsersTab({
 
           {/* 搜索框 */}
           <div className="search-container">
-            <Search className="search-icon" />
+            <SearchOutlined className="search-icon" />
             <Input
               placeholder="搜索用户名或邮箱..."
               value={userSearch}
@@ -348,7 +345,7 @@ function UsersTab({
         <Button
           onClick={onAddMember}
           type="primary"
-          icon={<UserPlus className="w-4 h-4" />}
+          icon={<UserAddOutlined className="w-4 h-4" />}
           size="small"
           className="add-member-btn"
         >
@@ -383,7 +380,7 @@ function UsersTab({
       {/* 空状态 */}
       {filteredUsers.length === 0 && (
         <div className="empty-state">
-          <Search className="empty-icon" />
+          <SearchOutlined className="empty-icon" />
           <Text strong>未找到用户</Text>
           <Text className="empty-desc">尝试调整搜索条件或筛选器</Text>
         </div>
@@ -468,7 +465,7 @@ function PermissionsTab({
   );
 
   const toggleGroup = (groupId: string) => {
-    setExpandedGroups(prev => 
+    setExpandedGroups(prev =>
       prev.includes(groupId)
         ? prev.filter(id => id !== groupId)
         : [...prev, groupId]
@@ -476,7 +473,7 @@ function PermissionsTab({
   };
 
   const togglePermission = (permissionId: string) => {
-    setSelectedPermissions(prev => 
+    setSelectedPermissions(prev =>
       prev.includes(permissionId)
         ? prev.filter(id => id !== permissionId)
         : [...prev, permissionId]
@@ -543,7 +540,7 @@ function PermissionsTab({
               {/* 分组标题 */}
               <div className="group-header" onClick={() => toggleGroup(group.id)}>
                 <div className="group-info">
-                  <ChevronRight className={`expand-icon ${isExpanded ? 'expanded' : ''}`} />
+                  <RightOutlined className={`expand-icon ${isExpanded ? 'expanded' : ''}`} />
                   <div className="group-details">
                     <Text strong className="group-name">{group.name}</Text>
                     <div className={`permission-count ${allSelected ? 'all-selected' : someSelected ? 'part-selected' : ''}`}>
@@ -552,14 +549,14 @@ function PermissionsTab({
                   </div>
                 </div>
                 <div className="group-description">{group.description}</div>
-                <div 
+                <div
                   className={`group-checkbox ${allSelected ? 'checked' : someSelected ? 'indeterminate' : ''}`}
                   onClick={(e) => {
                     e.stopPropagation();
                     toggleAllInGroup(group);
                   }}
                 >
-                  {allSelected && <CheckCircle2 className="check-icon" />}
+                  {allSelected && <CheckCircleOutlined className="check-icon" />}
                 </div>
               </div>
 
@@ -570,13 +567,13 @@ function PermissionsTab({
                     const isSelected = selectedPermissions.includes(permission.id);
 
                     return (
-                      <div 
-                        key={permission.id} 
+                      <div
+                        key={permission.id}
                         className={`permission-item ${isSelected ? 'selected' : ''}`}
                         onClick={() => togglePermission(permission.id)}
                       >
                         <div className={`permission-checkbox ${isSelected ? 'checked' : ''}`}>
-                          {isSelected && <CheckCircle2 className="check-icon" />}
+                          {isSelected && <CheckCircleOutlined className="check-icon" />}
                         </div>
                         <div className="permission-info">
                           <Text className="permission-name">{permission.name}</Text>
@@ -625,12 +622,12 @@ function CreateRoleModal({ onClose }: { onClose: () => void }) {
       <div className="modal-container">
         <div className="modal-header">
           <div className="modal-title">
-            <Shield className="modal-icon" />
+            <SafetyOutlined className="modal-icon" />
             <Title level={4} className="title-text">创建角色</Title>
           </div>
           <Button
             type="text"
-            icon={<X className="w-4 h-4" />}
+            icon={<CloseOutlined className="w-4 h-4" />}
             onClick={onClose}
             className="close-btn"
           />
@@ -721,13 +718,13 @@ function AddMemberModal({ roleId, onClose }: { roleId: string; onClose: () => vo
     },
   ];
 
-  const filteredUsers = availableUsers.filter(user => 
+  const filteredUsers = availableUsers.filter(user =>
     user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     user.email.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const toggleUser = (userId: number) => {
-    setSelectedUsers(prev => 
+    setSelectedUsers(prev =>
       prev.includes(userId)
         ? prev.filter(id => id !== userId)
         : [...prev, userId]
@@ -748,19 +745,19 @@ function AddMemberModal({ roleId, onClose }: { roleId: string; onClose: () => vo
       <div className="modal-container">
         <div className="modal-header">
           <div className="modal-title">
-            <UserPlus className="modal-icon" />
+            <UserAddOutlined className="modal-icon" />
             <Title level={4} className="title-text">添加成员</Title>
           </div>
           <Button
             type="text"
-            icon={<X className="w-4 h-4" />}
+            icon={<CloseOutlined className="w-4 h-4" />}
             onClick={onClose}
             className="close-btn"
           />
         </div>
 
         <div className="modal-search">
-          <Search className="search-icon" />
+          <SearchOutlined className="search-icon" />
           <Input
             placeholder="搜索用户名或邮箱..."
             value={searchQuery}
@@ -776,13 +773,13 @@ function AddMemberModal({ roleId, onClose }: { roleId: string; onClose: () => vo
                 const isSelected = selectedUsers.includes(user.id);
 
                 return (
-                  <div 
-                    key={user.id} 
+                  <div
+                    key={user.id}
                     className={`available-user ${isSelected ? 'selected' : ''}`}
                     onClick={() => toggleUser(user.id)}
                   >
                     <div className={`user-checkbox ${isSelected ? 'checked' : ''}`}>
-                      {isSelected && <CheckCircle2 className="check-icon" />}
+                      {isSelected && <CheckCircleOutlined className="check-icon" />}
                     </div>
                     <div className="user-avatar">
                       <img src={user.avatar} alt={user.name} className="avatar-img" />
@@ -798,7 +795,7 @@ function AddMemberModal({ roleId, onClose }: { roleId: string; onClose: () => vo
             </div>
           ) : (
             <div className="empty-state">
-              <Search className="empty-icon" />
+              <SearchOutlined className="empty-icon" />
               <Text strong>未找到用户</Text>
               <Text className="empty-desc">尝试调整搜索条件</Text>
             </div>

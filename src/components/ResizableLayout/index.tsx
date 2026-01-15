@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import "./index.scss";
+import styles from "./index.module.scss";
 import { RightOutlined, MessageOutlined } from "@ant-design/icons";
 
 interface ResizableLayoutProps {
@@ -74,9 +74,9 @@ function ResizableLayout({
   };
 
   return (
-    <div ref={containerRef} className="resizable-layout">
+    <div ref={containerRef} className={styles["resizable-layout"]}>
       <div
-        className="resizable-layout-left"
+        className={styles["resizable-layout-left"]}
         style={{ flex: 1, minWidth: minLeftWidth }}
       >
         {left}
@@ -84,18 +84,18 @@ function ResizableLayout({
       {!hideAI && (
         <>
           <div
-            className={`resizable-layout-divider ${isDragging ? "dragging" : ""}`}
+            className={`${styles["resizable-layout-divider"]} ${isDragging ? styles.dragging : ""}`}
             onMouseDown={handleMouseDown}
           >
-            <div className="divider-handle" />
+            <div className={styles["divider-handle"]} />
           </div>
 
           {/* ai对话框 */}
           {collapsed ? (
-            <div className="chat-collapsed">
+            <div className={styles["chat-collapsed"]}>
               <button
                 onClick={() => setCollapsed(false)}
-                className="chat-collapse-button"
+                className={styles["chat-collapse-button"]}
               >
                 <MessageOutlined />
               </button>
@@ -105,13 +105,13 @@ function ResizableLayout({
               {/* 关闭按钮 */}
               <button
                 onClick={() => setCollapsed(true)}
-                className="chat-close-button"
+                className={styles["chat-close-button"]}
                 style={{ right: rightWidth + 16 + "px" }}
               >
                 <RightOutlined />
               </button>
               <div
-                className="resizable-layout-right"
+                className={styles["resizable-layout-right"]}
                 style={{
                   width: `${rightWidth}px`,
                   minWidth: minRightWidth,

@@ -1,5 +1,6 @@
 .setting-page {
   padding: 32px;
+  background: #f9fafb;
 
   .profile-header {
     display: flex;
@@ -86,7 +87,7 @@
   border-radius: 14px;
   padding: 8px;
   position: sticky;
-  top: 24px;
+  top: 32px;
 }
 
 .nav-item {
@@ -137,12 +138,15 @@
 .content-sections {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
 }
 
 .section-card {
+  background: #fff;
   border-radius: 16px;
   border: 1px solid #eef0f3;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+  padding: 24px;
 }
 
 .section-title {
@@ -152,7 +156,7 @@
   font-size: 15px;
   font-weight: 600;
   color: #1f2328;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .section-body {
@@ -186,7 +190,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px;
+  padding: 16px;
   border: 1px solid #eef0f3;
   border-radius: 12px;
   transition: border-color .2s;
@@ -332,9 +336,12 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  justify-content: space-between;
 }
 
 .session-item {
+  display: flex;
+  justify-content: space-between;
   padding: 12px;
   border: 1px solid #eef0f3;
   border-radius: 12px;
@@ -437,6 +444,10 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  background-image: linear-gradient(90deg, #7c3aed 0%, #4f46e5 100%) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  box-shadow: 0 1px 2px rgba(79,70,229,.25);
 }
 
 .section-actions {
@@ -583,7 +594,7 @@
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  padding: 12px;
+  padding: 16px;
   border-radius: 12px;
   background: linear-gradient(135deg, #f5f3ff, #eef2ff);
   border: 1px solid #ede9fe;
@@ -620,11 +631,11 @@
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 16px;
 }
 
 .stat-item {
-  padding: 12px;
+  padding: 16px;
   border-radius: 12px;
   border: 1px solid #eef0f3;
   text-align: center;
@@ -644,16 +655,25 @@
 .tech-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 12px;
 }
 
 .tech-item {
-  padding: 8px;
+  padding: 12px;
   border-radius: 10px;
   background: #f8fafc;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+/* AntD 组件细节对齐 */
+:global(.ant-switch-checked) {
+  background-image: linear-gradient(90deg, #7c3aed 0%, #4f46e5 100%) !important;
+}
+
+:global(.ant-card-body) {
+  padding: 0 !important;
 }
 
 .tech-name {

@@ -245,7 +245,10 @@ function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
 
         {/* 底部操作 */}
         <div className="sidebar-bottom-actions">
-          <button className="sidebar-module-icon">
+          <button
+            className="sidebar-module-icon"
+            onClick={() => navigate("/admin/setting")}
+          >
             <SettingOutlined className="module-icon" />
           </button>
           <button

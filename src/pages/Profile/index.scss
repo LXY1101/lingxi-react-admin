@@ -11,14 +11,14 @@
   margin: 0 auto;
 }
 
-.profile-header {
+.profile-page .profile-header {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   margin-bottom: 24px;
 }
 
-.profile-back-btn {
+.profile-page .profile-back-btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -52,14 +52,14 @@
   }
 }
 
-.profile-title {
+.profile-page .profile-title {
   font-size: 30px;
   font-weight: 700;
   color: #111827;
   margin-bottom: 8px;
 }
 
-.profile-subtitle {
+.profile-page .profile-subtitle {
   color: #6b7280;
   font-size: 16px;
   line-height: 24px;
@@ -182,14 +182,14 @@
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
 }
 
-.profile-section-card .section-row {
+.profile-page .profile-section-card .section-row {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.profile-section-card {
+.profile-page .profile-section-card {
   background: #fff;
   border: 1px solid #f0f0f0;
   border-radius: 12px;
@@ -197,13 +197,13 @@
   margin-bottom: 12px;
 }
 
-.section-main {
+.profile-page .section-main {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.section-header {
+.profile-page .section-header {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -211,7 +211,7 @@
   font-weight: 600;
 }
 
-.section-body {
+.profile-page .section-body {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -223,20 +223,20 @@
   gap: 8px;
 }
 
-.section-text .section-title {
+.profile-page .section-text .section-title {
   font-weight: 600;
 }
 
-.section-text .section-title-sm {
+.profile-page .section-text .section-title-sm {
   font-weight: 500;
 }
 
-.section-text .section-desc {
+.profile-page .section-text .section-desc {
   font-size: 12px;
   color: #666;
 }
 
-.thirdparty-icon {
+.profile-page .thirdparty-icon {
   width: 32px;
   height: 32px;
   border-radius: 8px;
@@ -248,14 +248,14 @@
   font-size: 12px;
 }
 
-.thirdparty-icon.wechat {
+.profile-page .thirdparty-icon.wechat {
   background: #52c41a;
 }
 
-.thirdparty-icon.github {
+.profile-page .thirdparty-icon.github {
   background: #000;
 }
 
-.icon-success {
+.profile-page .icon-success {
   color: #52c41a;
 }
